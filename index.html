@@ -145,7 +145,8 @@ background:linear-gradient(rgba(168,204,240,.06) 1px,transparent 1px) 0 0/7px 7p
 .hero h1 em{display:block;font-style:normal;font-weight:500;color:var(--blue-2)}
 .hero .lead{margin-top:30px;color:rgba(255,255,255,.74);max-width:46ch}
 .hero__ctas{display:grid;grid-template-columns:1fr 1fr;width:max-content;max-width:100%;gap:12px;margin-top:38px}
-.hero__ctas .btn--blue{justify-content:space-between}
+.hero__ctas .btn--blue{position:relative;justify-content:center;padding:0 56px}
+.hero__ctas .btn--blue i{position:absolute;right:10px;top:9px}
 .hero__ctas .btn--glass{justify-content:center}
 .hero__txt h1,.hero__txt .lead,.hero__ctas{animation:sobe 1s var(--ease) both}
 .hero__txt .lead{animation-delay:.08s}.hero__ctas{animation-delay:.16s}
@@ -179,8 +180,9 @@ background:linear-gradient(rgba(168,204,240,.06) 1px,transparent 1px) 0 0/7px 7p
 .hero .lead{margin-top:20px}
 .hero__ctas{margin-top:28px}
 }
+@media (min-width:901px) and (max-width:1279px){.hero__ctas{grid-template-columns:1fr}}
 @media (max-width:640px){.hero__ctas{grid-template-columns:1fr;width:auto}}
-@media (max-width:360px){.hero__ctas .btn--blue{padding-left:20px;gap:8px}}
+@media (max-width:360px){.hero__ctas .btn--blue{padding:0 56px 0 16px}}
 .eco{display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:36px 0;border-bottom:1px solid var(--line)}
 .eco>p{flex:none;font-size:15px;line-height:1.35;color:var(--muted);max-width:22ch}
 .eco>p b{display:block;color:var(--ink);font-weight:500}
@@ -594,6 +596,6 @@ background:linear-gradient(rgba(168,204,240,.06) 1px,transparent 1px) 0 0/7px 7p
     <div class="foot__bar"><span>© 2026 X Wolves. Parceira TOTVS.</span><span>TOTVS, Protheus, RM, Datasul e Fluig são marcas da TOTVS S.A. Salesforce é marca da Salesforce, Inc.</span></div>
   </div>
 </footer>
-<script src="/assets/js/site.js?v=546ed805" defer></script>
+<script src="/assets/js/site.js?v=b3d18f9e" defer></script>
 </body>
 </html>

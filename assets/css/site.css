@@ -142,7 +142,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero .lead{margin-top:30px;color:rgba(255,255,255,.74);max-width:46ch}
 /* os dois botões com a mesma largura: lado a lado no computador, um embaixo do outro e na largura toda no celular */
 .hero__ctas{display:grid;grid-template-columns:1fr 1fr;width:max-content;max-width:100%;gap:12px;margin-top:38px}
-.hero__ctas .btn--blue{justify-content:space-between}
+.hero__ctas .btn--blue{position:relative;justify-content:center;padding:0 56px} /* texto no centro, como o do outro botão; a seta fica no canto */
+.hero__ctas .btn--blue i{position:absolute;right:10px;top:9px}
 .hero__ctas .btn--glass{justify-content:center}
 .hero__txt h1,.hero__txt .lead,.hero__ctas{animation:sobe 1s var(--ease) both}
 .hero__txt .lead{animation-delay:.08s}.hero__ctas{animation-delay:.16s}
@@ -179,8 +180,9 @@ ul,ol{margin:0;padding:0;list-style:none}
   .hero .lead{margin-top:20px}
   .hero__ctas{margin-top:28px}
 }
+@media (min-width:901px) and (max-width:1279px){.hero__ctas{grid-template-columns:1fr}} /* lado a lado, invadiriam o ombro do lobo (medido pixel a pixel) */
 @media (max-width:640px){.hero__ctas{grid-template-columns:1fr;width:auto}}
-@media (max-width:360px){.hero__ctas .btn--blue{padding-left:20px;gap:8px}}
+@media (max-width:360px){.hero__ctas .btn--blue{padding:0 56px 0 16px}}
 
 /* ---------------------------------------------------------------- faixa do ecossistema (vira logos de clientes quando chegarem) */
 .eco{display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:36px 0;border-bottom:1px solid var(--line)}

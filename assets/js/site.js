@@ -43,10 +43,11 @@
      computador, ao primeiro movimento do mouse ou logo depois do load; no celular, ao primeiro toque ou rolagem.
      Até lá (ou sem WebGL), fica a imagem de frente, que é o LCP e sai do mesmo modelo, então a troca não tem salto.
      A cada quadro de tela uma mola leva a cabeça até o alvo: ela gira de verdade, sem misturar imagens.
-     No celular ele olha em volta sozinho e olha para onde o dedo toca. */
+     Com mouse ou trackpad (computador, iPad com trackpad) ele segue o cursor, sem precisar clicar. No celular ele olha
+     em volta sozinho e segue o dedo enquanto o dedo está na tela, inclusive arrastando. */
   var wolf = $('#wolf');
   if (wolf && !reduce) {
-    var cv = document.createElement('canvas'), l3 = null, iniciou = false;
+    var cv = document.createElement('canvas'), l3 = null, iniciou = false, mouse = fino;
     var GIRO = 34, CIMA = 14, BAIXO = 12; // graus até onde a cabeça vai
     var x = 0, y = 0, vx = 0, vy = 0, ax = 0, ay = 0, antes = 0, solto = 0;
     cv.className = 'wolf__cv'; cv.setAttribute('aria-hidden', 'true');
@@ -64,11 +65,11 @@
     };
     var tick = function (t) {
       var dt = Math.min(.05, antes ? (t - antes) / 1000 : .016); antes = t;
-      if (!fino && t > solto) { // sozinho: um ponto novo a cada 1,8 a 3,6 s
+      if (!mouse && t > solto) { // sozinho: um ponto novo a cada 1,8 a 3,6 s
         ax = (Math.random() * 2 - 1) * GIRO * .8; ay = (Math.random() * 2 - 1) * (Math.random() < .5 ? CIMA : BAIXO) * .7;
         solto = t + 1800 + Math.random() * 1800;
       }
-      var w = fino ? 10 : 4.5; // mola com amortecimento crítico: arranca, freia e chega sem passar do ponto
+      var w = mouse ? 10 : 4.5; // mola com amortecimento crítico: arranca, freia e chega sem passar do ponto
       vx += (w * w * (ax - x) - 2 * w * vx) * dt; x += vx * dt;
       vy += (w * w * (ay - y) - 2 * w * vy) * dt; y += vy * dt;
       if (!wolf.classList.contains('is-off')) l3.pose(x, y);
@@ -82,17 +83,21 @@
         addEventListener('resize', medeCv); requestAnimationFrame(tick);
       }).catch(function () { /* sem WebGL ou sem rede: fica a imagem de frente */ });
     };
-    if (fino) addEventListener('pointermove', function (e) {
-      if (wolf.getBoundingClientRect().bottom < 0) return;
+    addEventListener('pointermove', function (e) { // só mouse e caneta: o toque passa pelo dedo() abaixo
+      if (e.pointerType === 'touch' || wolf.getBoundingClientRect().bottom < 0) return;
+      mouse = true;
       var dx = olha(e.clientX, e.clientY); inicia();
       wolf.style.setProperty('--px', (dx * 10).toFixed(1) + 'px');
       wolf.style.setProperty('--py', (((e.clientY / innerHeight) - .5) * 8).toFixed(1) + 'px');
     }, { passive: true });
-    else {
-      addEventListener('pointerdown', function (e) {
-        if (wolf.getBoundingClientRect().bottom < 0) return;
-        olha(e.clientX, e.clientY); solto = performance.now() + 2600; inicia();
-      }, { passive: true });
+    if (!fino) {
+      var dedo = function (e) { // touchmove continua chegando enquanto a página rola, então ele acompanha o arrasto
+        var d = e.touches[0];
+        if (!d || wolf.getBoundingClientRect().bottom < 0) return;
+        olha(d.clientX, d.clientY); solto = performance.now() + 2600; inicia();
+      };
+      addEventListener('touchstart', dedo, { passive: true });
+      addEventListener('touchmove', dedo, { passive: true });
       addEventListener('scroll', inicia, { passive: true, once: true });
     }
     // no computador, depois do load só baixa (sem executar) e o 3D liga no primeiro movimento do mouse;

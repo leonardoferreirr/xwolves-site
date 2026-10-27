@@ -37,7 +37,7 @@ As imagens foram geradas no ChatGPT pelo Leonardo, com os prompts de `06_OUTPUTS
 - Os números (+10 anos, +1.800 projetos, +250 empresas com IA, +75 profissionais) foram confirmados pelo Leonardo em 27/10/2026.
 - Não há seção de time, a pedido dele.
 - Os logos de clientes ainda não chegaram. Quando chegarem, substituem o letreiro de produtos logo abaixo do topo.
-- A IA X Wolves aparece como "em desenvolvimento".
+- A seção da IA não diz mais "em desenvolvimento": ele finaliza a IA X Wolves até o fim da semana de 27/10/2026.
 - O formulário não guarda nada: ele monta a mensagem e abre o WhatsApp (+55 11 97611-7343).
 
 ## Para publicar no domínio

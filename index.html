@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X Wolves · Consultoria TOTVS em Protheus, RM, Datasul, Fluig e Salesforce</title>
+<meta name="description" content="Parceira TOTVS com mais de 10 anos em ERP, CRM e integrações. Consultoria, implantação, sustentação e outsourcing para Protheus, RM, Datasul, Fluig e Salesforce.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#020A1F">
+<link rel="canonical" href="https://xwolves.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="X Wolves">
+<meta property="og:title" content="X Wolves · Consultoria TOTVS com a força da matilha">
+<meta property="og:description" content="ERP, CRM e integrações TOTVS: consultoria, implantação, sustentação e outsourcing.">
+<meta property="og:url" content="https://xwolves.com.br/">
+<meta property="og:image" content="https://xwolves.com.br/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/brand/favicon-64.png" sizes="64x64" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/Poppins-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/Poppins-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="/assets/img/lobo/busto-c.webp" imagesrcset="/assets/img/lobo/busto-c-620.webp 620w, /assets/img/lobo/busto-c.webp 1000w" imagesizes="(max-width: 900px) 92vw, 58vw" fetchpriority="high">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "X Wolves", "url": "https://xwolves.com.br/", "description": "Consultoria TOTVS com mais de 10 anos em ERP, CRM e integrações: Protheus, RM, Datasul, Fluig, Salesforce, AMS e outsourcing.", "telephone": "+55 11 97611-7343", "email": "contato@xwolves.com.br", "areaServed": "BR", "slogan": "É momento de mudar, para evoluir e não parar.", "logo": "https://xwolves.com.br/assets/brand/apple-touch-icon.png", "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Soluções TOTVS", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Protheus", "description": "Especialistas para fazer do Protheus o coração da gestão, do backoffice ao chão de fábrica."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "RM", "description": "Consultoria completa em todos os módulos do TOTVS RM, com a empresa inteira falando a mesma língua."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Datasul", "description": "Atualização, revitalização e personalizações para o Datasul rodar em alto nível."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fluig", "description": "Integramos o Fluig aos ERPs TOTVS e simplificamos aprovações, cadastros e fluxos digitais."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Salesforce", "description": "CRM integrado ao seu ERP, para vendas e atendimento enxergarem o mesmo cliente."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AMS Suporte", "description": "Gestão de chamados e sustentação para manter os seus sistemas funcionando sem falhas."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Outsourcing", "description": "Profissionais e times dedicados aos desafios dos seus produtos TOTVS."}}]}}</script>
+<style>@font-face{font-family:'Poppins';src:url('/assets/fonts/Poppins-300.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Poppins';src:url('/assets/fonts/Poppins-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Poppins';src:url('/assets/fonts/Poppins-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Poppins';src:url('/assets/fonts/Poppins-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Poppins Fallback';src:local('Arial');size-adjust:112.5%;ascent-override:93%;descent-override:31%;line-gap-override:9%}
+:root{
+--night:#020A1F;
+--navy:#061433;
+--navy-2:#0A1F4D;
+--logo:#002460;
+--blue:#1F5BFF;
+--blue-2:#3B7BFF;
+--sky:#A8CCF0;
+--ice:#EEF4FF;
+--ink:#0A1430;
+--text:#3B4560;
+--muted:#5D6882;
+--line:#E3E8F2;
+--grey:#F4F6FB;
+--white:#FFFFFF;
+--font:'Poppins','Poppins Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+--maxw:1280px;
+--gutter:clamp(20px,4vw,56px);
+--section:clamp(80px,10vw,150px);
+--r:28px;
+--top-h:84px;
+--ease:cubic-bezier(.2,.7,.2,1);
+--spring:cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--top-h) + 12px)}
+body{margin:0;background:var(--white);color:var(--text);font:400 clamp(15px,1.05vw,17px)/1.65 var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px;border-radius:8px}
+::selection{background:var(--blue);color:#fff}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.h2{font-weight:300;font-size:clamp(34px,4.6vw,68px);line-height:1.04;letter-spacing:-.035em;color:var(--ink)}
+.h2 b{font-weight:500;display:block}
+.h2 span{display:block;color:#6F7990}
+.lead{font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--text);max-width:52ch}
+.sec{padding:var(--section) 0}
+.sec--grey{background:var(--grey)}
+.btn{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 10px 0 26px;border-radius:999px;font-weight:500;font-size:15.5px;white-space:nowrap;cursor:pointer;border:0;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s}
+.btn i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;transition:transform .35s var(--ease)}
+.btn i svg{width:16px;height:16px}
+.btn:hover i{transform:rotate(45deg)}
+.btn--blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px -8px rgba(31,91,255,.6)}
+.btn--blue i{background:#fff;color:var(--blue)}
+.btn--blue:hover{transform:translateY(-2px);box-shadow:0 18px 40px -10px rgba(31,91,255,.75)}
+.btn--glass{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.18);padding:0 26px}
+.btn--glass:hover{background:rgba(255,255,255,.12)}
+.btn--ink{background:var(--ink);color:#fff}
+.btn--ink i{background:var(--blue);color:#fff}
+.btn--ink:hover{transform:translateY(-2px)}
+.go{display:inline-flex;align-items:center;gap:10px;font-weight:500;color:var(--ink)}
+.go svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.go:hover svg{transform:translate(3px,-3px)}
+.top{position:fixed;inset:0 0 auto;z-index:50;transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+.top.is-scrolled{background:rgba(2,10,31,.92);border-bottom-color:rgba(168,204,240,.1)}
+.top__in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:var(--top-h)}
+.logo{display:inline-flex;align-items:center;gap:12px;color:#fff;font-weight:600;font-size:21px;letter-spacing:.02em}
+.logo img{width:34px;height:auto}
+.logo span em{font-style:normal;color:#4A90E2}
+.nav{display:flex;align-items:center;gap:2px;height:52px;padding:0 8px;border-radius:999px;border:1px solid rgba(168,204,240,.22);background:rgba(255,255,255,.03)}
+.nav>a,.nav__btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:0;background:none;color:rgba(255,255,255,.86);font-size:14.5px;cursor:pointer;transition:background .25s,color .25s}
+.nav>a:hover,.nav__btn:hover,.nav__item.is-open .nav__btn{background:rgba(255,255,255,.08);color:#fff}
+.nav__btn svg{width:10px;height:10px;transition:transform .3s var(--ease)}
+.nav__item{position:relative}
+.nav__item.is-open .nav__btn svg{transform:rotate(180deg)}
+.top__cta{height:52px;padding:0 8px 0 22px;font-size:14.5px;background:#fff;color:var(--ink)}
+.top__cta i{background:var(--ink);color:#fff;width:36px;height:36px}
+.mega{position:absolute;top:calc(100% + 16px);left:50%;width:min(780px,92vw);transform:translate(-50%,8px);display:grid;grid-template-columns:1.25fr 1fr;gap:10px;padding:10px;border-radius:26px;background:#fff;box-shadow:0 40px 100px -20px rgba(2,10,31,.55);opacity:0;visibility:hidden;transition:opacity .25s,transform .3s var(--ease),visibility 0s .3s}
+.nav__item.is-open .mega,html:not(.js) .nav__item:hover .mega,html:not(.js) .nav__item:focus-within .mega{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .25s,transform .3s var(--ease)}
+.mega::before{content:"";position:absolute;inset:-18px 0 auto;height:18px}
+.mega__list{display:grid;padding:8px}
+.mega__list a{display:flex;align-items:center;gap:14px;padding:11px 12px;border-radius:14px;color:var(--ink);font-weight:500;transition:background .2s}
+.mega__list a small{font-size:12px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums;width:22px}
+.mega__list a:hover{background:var(--grey)}
+.mega__list a span{flex:1}
+.mega__list a svg{width:13px;height:13px;color:var(--blue);opacity:0;transform:translate(-4px,4px);transition:opacity .2s,transform .25s var(--ease)}
+.mega__list a:hover svg{opacity:1;transform:none}
+.mega__card{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:300px;padding:24px;border-radius:20px;background:radial-gradient(80% 70% at 70% 20%,rgba(31,91,255,.55),transparent 70%),var(--navy);color:#fff}
+.mega__card img{position:absolute;right:-6%;top:6%;width:62%;pointer-events:none}
+.mega__card b{position:relative;font-size:22px;font-weight:500;line-height:1.2;letter-spacing:-.02em;max-width:12ch}
+.mega__card .go{position:relative;margin-top:14px;color:var(--sky)}
+.burger{display:none;width:48px;height:48px;border-radius:50%;border:1px solid rgba(168,204,240,.3);background:rgba(255,255,255,.04);position:relative;cursor:pointer}
+.burger::before,.burger::after{content:"";position:absolute;left:14px;right:14px;height:1.5px;background:#fff;transition:transform .3s var(--ease)}
+.burger::before{top:19px}.burger::after{bottom:19px}
+.top.is-open .burger::before{transform:translateY(4px) rotate(45deg)}
+.top.is-open .burger::after{transform:translateY(-4px) rotate(-45deg)}
+.mnav{display:none}
+@media (max-width:1060px){
+.nav,.top__cta{display:none}
+.burger{display:block}
+.top.is-open{background:var(--night)}
+.mnav{display:block;position:fixed;inset:var(--top-h) 0 0;overflow:auto;background:var(--night);padding:12px var(--gutter) 40px}
+.mnav[hidden]{display:none}
+.mnav p{margin:22px 0 8px;font-size:12.5px;color:var(--sky);letter-spacing:.04em}
+.mnav a{display:block;padding:12px 0;border-bottom:1px solid rgba(168,204,240,.12);color:#fff;font-size:18px}
+.mnav .btn{display:flex;justify-content:space-between;margin-top:28px;border:0}
+}
+.hero{position:relative;overflow:hidden;isolation:isolate;min-height:max(700px,100svh);display:flex;align-items:center;padding:calc(var(--top-h) + 40px) 0 120px;background:var(--night);color:#fff}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;
+background:radial-gradient(42% 58% at 74% 62%,rgba(31,91,255,.5),rgba(31,91,255,0) 70%),
+radial-gradient(30% 40% at 78% 100%,rgba(168,204,240,.25),transparent 70%),
+linear-gradient(180deg,#020A1F 0%,#061433 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+background:linear-gradient(rgba(168,204,240,.06) 1px,transparent 1px) 0 0/7px 7px,linear-gradient(90deg,rgba(168,204,240,.06) 1px,transparent 1px) 0 0/7px 7px;
+-webkit-mask-image:radial-gradient(60% 70% at 70% 55%,#000 10%,transparent 75%);mask-image:radial-gradient(60% 70% at 70% 55%,#000 10%,transparent 75%)}
+.hero__txt{position:relative;z-index:3;max-width:640px}
+.hero h1{font-weight:300;font-size:clamp(46px,7.2vw,112px);line-height:.98;letter-spacing:-.045em}
+.hero h1 b{display:block;font-weight:500}
+.hero h1 em{display:block;font-style:normal;font-weight:500;color:var(--blue-2)}
+.hero .lead{margin-top:30px;color:rgba(255,255,255,.74);max-width:46ch}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.hero__txt h1,.hero__txt .lead,.hero__ctas{animation:sobe 1s var(--ease) both}
+.hero__txt .lead{animation-delay:.08s}.hero__ctas{animation-delay:.16s}
+@keyframes sobe{from{transform:translateY(26px)}}
+.wolf{position:absolute;z-index:2;right:max(-30px,calc(50% - 740px));bottom:0;width:min(54vw,760px,calc(100svh - var(--top-h) - 70px));aspect-ratio:1;pointer-events:none;transform:translate3d(var(--px,0),var(--py,0),0);transition:transform .6s var(--ease)}
+.wolf img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom;opacity:0}
+.wolf img.is-on{opacity:1}
+.wolf::before{content:"";position:absolute;left:18%;right:18%;bottom:-6%;height:46%;border-radius:50%;background:radial-gradient(closest-side,rgba(59,123,255,.55),transparent);z-index:-1}
+.seal{position:absolute;z-index:3;left:calc(50% + 10px);top:calc(var(--top-h) + 40px);width:118px;height:118px}
+.seal svg{width:100%;height:100%;animation:gira 22s linear infinite}
+.seal img{position:absolute;inset:32px;width:54px;height:auto;margin:auto}
+.seal text{font-size:11.2px;letter-spacing:.2em;fill:rgba(168,204,240,.8);font-weight:500}
+@keyframes gira{to{transform:rotate(360deg)}}
+.manifest{position:absolute;z-index:4;right:var(--gutter);bottom:96px;display:flex;align-items:center;gap:16px;width:min(360px,40vw);padding:18px 20px;border-radius:22px;background:rgba(6,20,51,.62);border:1px solid rgba(168,204,240,.22);color:#fff;transition:border-color .3s,background .3s}
+.manifest:hover{border-color:rgba(168,204,240,.5);background:rgba(10,31,77,.75)}
+.manifest img{width:44px;flex:none}
+.manifest small{display:block;font-size:12px;color:var(--sky);letter-spacing:.06em}
+.manifest b{display:block;font-weight:500;font-size:16px;line-height:1.3}
+.manifest svg{width:16px;height:16px;flex:none;margin-left:auto;color:var(--sky)}
+.hero__vert{position:absolute;z-index:3;right:20px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:11.5px;letter-spacing:.32em;color:rgba(168,204,240,.6)}
+.hero__down{position:absolute;z-index:4;left:var(--gutter);bottom:34px;display:flex;align-items:center;gap:12px;font-size:13.5px;color:rgba(255,255,255,.7)}
+.hero__down span{width:36px;height:36px;border-radius:50%;border:1px solid rgba(168,204,240,.35);display:grid;place-items:center}
+.hero__down svg{width:14px;height:14px;animation:desce 2.2s var(--ease) infinite}
+@keyframes desce{50%{transform:translateY(4px)}}
+.hero__line{position:absolute;left:var(--gutter);right:var(--gutter);bottom:86px;height:1px;background:linear-gradient(90deg,rgba(168,204,240,.25),rgba(168,204,240,0))}
+@media (max-width:1060px){.manifest,.hero__vert{display:none}}
+@media (max-width:900px){
+.hero{display:flex;flex-direction:column;min-height:0;padding:calc(var(--top-h) + 4px) 0 64px}
+.hero>.wrap{order:2}
+.hero__txt{max-width:none}
+.wolf{order:1;position:relative;right:auto;margin:0 auto -18px;width:min(84vw,400px);transform:none;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 98%);mask-image:linear-gradient(180deg,#000 72%,transparent 98%)}
+.wolf::before{display:none}
+.seal,.hero__down,.hero__line{display:none}
+.hero h1{font-size:clamp(42px,12vw,64px)}
+.hero .lead{margin-top:20px}
+.hero__ctas{margin-top:28px}
+}
+.eco{display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:36px 0;border-bottom:1px solid var(--line)}
+.eco>p{flex:none;font-size:15px;line-height:1.35;color:var(--muted);max-width:22ch}
+.eco>p b{display:block;color:var(--ink);font-weight:500}
+.eco__run{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.eco__track{display:flex;width:max-content;animation:corre 34s linear infinite}
+.eco__track span{display:inline-flex;align-items:center;gap:34px;padding-right:34px;font-size:clamp(20px,2vw,28px);font-weight:500;letter-spacing:-.02em;color:#646D82;white-space:nowrap}
+.eco__track span::after{content:"";width:9px;height:9px;transform:rotate(45deg);background:var(--blue);opacity:.55}
+@keyframes corre{to{transform:translateX(-50%)}}
+@media (max-width:700px){.eco{flex-direction:column;align-items:flex-start;gap:18px}.eco__run{width:100%}}
+.intro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}
+.intro .lead{justify-self:end}
+.bento{display:grid;grid-template-columns:1.25fr 1fr .95fr;grid-template-rows:auto auto;gap:16px;margin-top:clamp(40px,5vw,64px)}
+.card{position:relative;overflow:hidden;border-radius:var(--r);padding:clamp(24px,2.4vw,34px);display:flex;flex-direction:column;justify-content:space-between;min-height:260px;transition:transform .45s var(--ease)}
+.card:hover{transform:translateY(-4px)}
+.card small{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.card strong{display:block;font-weight:500;font-size:clamp(56px,6vw,96px);line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.card strong sup{font-size:.42em;vertical-align:.95em;margin-left:4px;font-weight:400}
+.card p{margin-top:12px;font-size:16px;line-height:1.4}
+.card--dark{grid-row:span 2;min-height:540px;background:radial-gradient(70% 60% at 70% 30%,rgba(31,91,255,.55),transparent 70%),linear-gradient(160deg,var(--navy-2),var(--night));color:#fff}
+.card--dark small{color:var(--sky)}
+.card--dark p{color:rgba(255,255,255,.78)}
+.card--dark .pose{position:absolute;right:-4%;bottom:-2%;width:58%;max-width:330px}
+.card--dark>div{position:relative;z-index:2;max-width:60%}
+.card--blue{grid-row:span 2;background:radial-gradient(80% 60% at 80% 10%,rgba(255,255,255,.28),transparent 60%),linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px) 0 0/7px 7px,linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px) 0 0/7px 7px,var(--blue);color:#fff}
+.card--blue small{color:rgba(255,255,255,.86)}
+.card--blue p{color:rgba(255,255,255,.9)}
+.card--blue .chips{display:flex;flex-wrap:wrap;gap:8px;padding-top:20px;border-top:1px solid rgba(255,255,255,.22);margin-top:22px}
+.card--blue .chips span{font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14)}
+.card--white{background:#fff;border:1px solid var(--line);color:var(--ink);min-height:262px}
+.card--white small{color:var(--muted)}
+.card--white p{color:var(--text)}
+.card__ic{position:absolute;top:22px;right:22px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--ice);color:var(--blue)}
+.card__ic svg{width:18px;height:18px}
+.card--dark .card__ic{background:rgba(255,255,255,.1);color:#fff}
+.card--blue .card__ic{background:rgba(255,255,255,.16);color:#fff}
+@media (max-width:1000px){
+.intro{grid-template-columns:1fr}.intro .lead{justify-self:start}
+.bento{grid-template-columns:1fr 1fr}
+.card--dark{grid-column:1/-1;grid-row:auto;min-height:420px}
+.card--blue{grid-row:auto}
+}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.card--dark>div{max-width:56%}.card--dark{min-height:400px}.card--dark .pose{width:46%;right:-2%}.card--dark p{font-size:15px}}
+.sol__head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+.sol__head .pose{width:clamp(150px,15vw,220px);margin-bottom:-30px}
+.sol__head .lead{margin-top:22px}
+.rail{position:relative}
+.rail__track{display:flex;gap:18px;padding:clamp(48px,5vw,72px) var(--gutter) 0;width:max-content}
+.sol{position:relative;display:flex;flex-direction:column;width:clamp(290px,25vw,360px);min-height:min(400px,46vh);padding:28px;border-radius:var(--r);background:var(--grey);border:1px solid var(--line);transition:background .35s,transform .45s var(--ease),border-color .35s}
+.sol:hover{background:#fff;border-color:#C9D6F2;transform:translateY(-6px)}
+.sol__n{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sol .sol__name{margin-top:54px;font-size:clamp(30px,2.8vw,40px);font-weight:600;letter-spacing:-.04em;color:var(--ink);line-height:1}
+.sol__name em{font-style:normal;color:var(--blue)}
+.sol h3{margin-top:16px;font-size:20px;font-weight:500;letter-spacing:-.02em;color:var(--ink);line-height:1.25}
+.sol p{margin-top:10px;font-size:15px;color:var(--text);line-height:1.55}
+.sol .go{margin-top:auto;padding-top:26px;font-size:14.5px}
+.sol::before{content:"";position:absolute;top:22px;right:22px;width:52px;height:52px;border-radius:16px;background:linear-gradient(140deg,var(--blue),var(--logo));opacity:.92}
+.sol::after{content:"";position:absolute;top:38px;right:38px;width:20px;height:20px;border:2px solid #fff;border-radius:5px;transform:rotate(45deg)}
+@media (min-width:1061px) and (min-height:620px){
+.js .rail{height:calc(100vh + var(--sobra,1200px))}
+.js .rail__pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:safe center;padding-top:var(--top-h);overflow:hidden}
+.js .rail__track{padding-top:clamp(28px,4vh,56px);transform:translate3d(var(--x,0),0,0);will-change:transform}
+.rail .h2{font-size:clamp(34px,min(4.2vw,7vh),62px)}
+.rail .sol__head .pose{width:clamp(130px,min(14vw,24vh),210px);margin-bottom:0}
+}
+@media (min-width:1061px) and (max-height:760px){.rail .lead{display:none}}
+@media (max-width:1060px),(max-height:619px){
+.rail__track{width:auto;flex-direction:column;gap:14px}
+.sol{width:auto;min-height:0;position:sticky;top:calc(var(--top-h) + 10px + var(--i,0) * 14px);box-shadow:0 -10px 30px -18px rgba(2,10,31,.25)}
+.sol .sol__name{margin-top:28px}
+.sol__head{grid-template-columns:1fr}
+.sol__head .pose{display:none}
+}
+.jor{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,80px);align-items:start}
+.jor__head{position:sticky;top:calc(var(--top-h) + 40px)}
+.jor__head .h2{font-size:clamp(34px,3.8vw,56px)}
+.jor__head .lead{margin-top:22px}
+.jor__list{display:grid;gap:18px}
+.step{position:sticky;top:calc(var(--top-h) + 30px + var(--i,0) * 22px);display:grid;grid-template-columns:1fr 34%;gap:20px;min-height:440px;padding:clamp(26px,3vw,40px);border-radius:var(--r);background:#fff;border:1px solid var(--line);box-shadow:0 -14px 40px -24px rgba(2,10,31,.28);overflow:hidden}
+.step__n{font-size:13px;color:var(--blue);font-weight:500;font-variant-numeric:tabular-nums}
+.step h3{margin-top:18px;font-size:clamp(26px,2.4vw,34px);font-weight:500;letter-spacing:-.03em;color:var(--ink);line-height:1.1}
+.step h3 span{display:block;margin-top:6px;font-size:.62em;font-weight:300;color:var(--muted);letter-spacing:-.01em}
+.step>div>p{margin-top:16px;font-size:15.5px}
+.step ul{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display:grid;gap:9px}
+.step li{position:relative;padding-left:18px;font-size:14.5px;color:var(--ink)}
+.step li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;transform:rotate(45deg);background:var(--blue)}
+.step .pose{align-self:end;margin:0 -12px -40px 0}
+@media (max-width:1000px){
+.jor{grid-template-columns:1fr}
+.jor__head{position:static}
+.step{grid-template-columns:1fr 38%}
+}
+@media (max-width:600px){.step{grid-template-columns:1fr;min-height:0}.step .pose{width:52%;justify-self:end;margin:-10px -10px -34px 0}}
+.ia{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,64px);align-items:center;padding:clamp(34px,5vw,72px);border-radius:36px;overflow:hidden;background:radial-gradient(60% 70% at 85% 30%,rgba(31,91,255,.45),transparent 70%),linear-gradient(160deg,var(--navy-2),var(--night));color:#fff}
+.ia::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(168,204,240,.05) 1px,transparent 1px) 0 0/7px 7px,linear-gradient(90deg,rgba(168,204,240,.05) 1px,transparent 1px) 0 0/7px 7px;-webkit-mask-image:radial-gradient(50% 60% at 80% 40%,#000,transparent);mask-image:radial-gradient(50% 60% at 80% 40%,#000,transparent)}
+.ia>*{position:relative;z-index:1}
+.ia .h2{color:#fff}
+.ia .h2 span{color:rgba(168,204,240,.75)}
+.ia .lead{margin-top:22px;color:rgba(255,255,255,.75)}
+.ia .btn{margin-top:34px}
+.ia__tag{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-size:13.5px;color:var(--sky)}
+.ia__tag i{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 10px #4ADE80}
+.chat{position:relative;padding:22px;border-radius:26px;background:rgba(255,255,255,.05);border:1px solid rgba(168,204,240,.2)}
+.chat__top{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(168,204,240,.14)}
+.chat__top img{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:top;background:var(--navy-2)}
+.chat__top b{font-weight:500;font-size:15px}
+.chat__top small{display:block;font-size:12px;color:var(--sky)}
+.msgs{display:grid;gap:12px;padding-top:18px}
+.msg{max-width:86%;padding:12px 16px;border-radius:18px;font-size:14.5px;line-height:1.5}
+.msg--eu{justify-self:end;background:var(--blue);color:#fff;border-bottom-right-radius:6px}
+.msg--ia{background:rgba(255,255,255,.08);color:rgba(255,255,255,.92);border-bottom-left-radius:6px}
+.msg--ia b{color:#fff;font-weight:500}
+.msg table{width:100%;margin-top:10px;border-collapse:collapse;font-size:13px}
+.msg td{padding:6px 0;border-top:1px solid rgba(168,204,240,.14)}
+.msg td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.msg .ok{color:#4ADE80}.msg .baixo{color:#FBBF24}
+.dots{display:inline-flex;gap:4px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);justify-self:start}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulsa 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes pulsa{50%{opacity:.25;transform:translateY(-2px)}}
+.js .chat:not(.is-in) .msg,.js .chat:not(.is-in) .dots{opacity:0;transform:translateY(12px)}
+.chat .msg,.chat .dots{transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.chat .is-late{display:none}
+.chat__note{margin-top:14px;font-size:12px;color:rgba(168,204,240,.6);text-align:right}
+@media (max-width:1000px){.ia{grid-template-columns:1fr}}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,90px);align-items:center}
+.about__img{position:relative;border-radius:36px;background:radial-gradient(60% 55% at 50% 45%,rgba(31,91,255,.3),transparent 70%),var(--grey);aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.about__img .pose{width:78%}
+.about__img span{position:absolute;left:24px;top:24px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;background:#fff;font-size:14px;font-weight:500;color:var(--ink);box-shadow:0 14px 30px -18px rgba(2,10,31,.35)}
+.about__img span i{width:28px;height:28px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff}
+.about__img span svg{width:14px;height:14px}
+.about .lead{margin-top:24px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px;border-top:1px solid var(--line)}
+.pillars li{padding:22px 20px 0 0}
+.pillars li+li{padding-left:20px;border-left:1px solid var(--line)}
+.pillars b{display:block;font-weight:500;font-size:18px;color:var(--ink);letter-spacing:-.02em}
+.pillars span{display:block;margin-top:6px;font-size:14.5px;color:var(--muted);line-height:1.5}
+@media (max-width:900px){.about{grid-template-columns:1fr}.about__img{max-width:460px}.pillars{grid-template-columns:1fr}.pillars li,.pillars li+li{padding:16px 0;border-left:0;border-bottom:1px solid var(--line)}}
+.motto{position:relative;overflow:hidden;padding:clamp(40px,5vw,70px) 0;border-top:1px solid var(--line)}
+.motto .pose{position:absolute;z-index:2;left:clamp(10px,4vw,60px);bottom:-18px;width:clamp(120px,12vw,190px)}
+.motto::before{content:"";position:absolute;inset:0 auto 0 0;width:clamp(150px,18vw,280px);background:linear-gradient(90deg,#fff 60%,rgba(255,255,255,0));z-index:1}
+.motto__track{display:flex;width:max-content;animation:corre 40s linear infinite}
+.motto__track span{display:inline-flex;align-items:center;gap:44px;padding-right:44px;font-size:clamp(44px,7vw,110px);font-weight:300;letter-spacing:-.05em;color:var(--ink);white-space:nowrap}
+.motto__track span b{font-weight:500;color:var(--blue)}
+.motto__track span::after{content:"";width:22px;height:22px;transform:rotate(45deg);border:3px solid var(--blue)}
+.contact{position:relative;overflow:hidden;background:var(--night);color:#fff}
+.contact::before{content:"";position:absolute;inset:0;background:radial-gradient(45% 60% at 20% 80%,rgba(31,91,255,.4),transparent 70%)}
+.contact .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
+.contact .h2{color:#fff}
+.contact .h2 span{color:rgba(168,204,240,.75)}
+.contact .lead{margin-top:22px;color:rgba(255,255,255,.75)}
+.contact__lst{display:grid;gap:14px;margin-top:36px}
+.contact__lst a{display:inline-flex;align-items:center;gap:14px;font-size:17px;color:#fff}
+.contact__lst a i{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(168,204,240,.3);color:var(--sky);transition:background .25s,border-color .25s}
+.contact__lst a:hover i{background:var(--blue);border-color:var(--blue);color:#fff}
+.contact__lst svg{width:18px;height:18px}
+.contact .pose{width:clamp(170px,18vw,260px);margin:40px 0 calc(var(--section) * -1)}
+.form{display:grid;gap:14px;padding:clamp(22px,3vw,36px);border-radius:30px;background:rgba(255,255,255,.05);border:1px solid rgba(168,204,240,.2)}
+.form label{display:grid;gap:7px;font-size:13px;color:var(--sky)}
+.form input,.form select,.form textarea{height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(168,204,240,.22);background:rgba(2,10,31,.5);color:#fff;font-size:15px;outline:none;transition:border-color .2s}
+.form textarea{height:110px;padding:14px 16px;resize:vertical}
+.form select option{color:var(--ink)}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--blue-2)}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .btn{justify-content:space-between;margin-top:6px}
+.form__msg{min-height:1.3em;font-size:13.5px;color:var(--sky)}
+.form__alt{font-size:13.5px;color:rgba(255,255,255,.6)}
+.form__alt a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr}.contact .pose{display:none}.form__row{grid-template-columns:1fr}}
+.foot{background:var(--night);color:rgba(255,255,255,.66);border-top:1px solid rgba(168,204,240,.12);padding:clamp(56px,6vw,84px) 0 32px}
+.foot__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.foot__grid>div>p{margin-top:16px;max-width:30ch;font-size:15px}
+.foot .foot__h{margin:0 0 14px;font-size:13px;font-weight:500;color:#fff;letter-spacing:.04em}
+.foot li a{display:block;padding:5px 0;font-size:14.5px;transition:color .2s}
+.foot li a:hover{color:var(--sky)}
+.foot__bar{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid rgba(168,204,240,.12);font-size:13px}
+@media (max-width:900px){.foot__grid{grid-template-columns:1fr 1fr}.foot__grid>div:first-child{grid-column:1/-1}}
+.pose{position:relative;pointer-events:none;transform:perspective(900px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--ease)}
+.pose img{width:100%;height:auto;animation:respira 4.6s ease-in-out infinite alternate;transform-origin:50% 100%}
+@keyframes respira{to{transform:translateY(-6px) scaleY(1.012)}}
+.js .pose:not(.is-in) img{opacity:0;transform:translateY(40px) scale(.92)}
+.js .pose.is-in img{animation:pulo .9s var(--spring) both,respira 4.6s ease-in-out .9s infinite alternate}
+@keyframes pulo{from{opacity:0;transform:translateY(40px) scale(.92)}to{opacity:1;transform:none}}
+.is-off,.is-off *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+.js .pose:not(.is-in) img,.js .chat:not(.is-in) .msg,.js .chat:not(.is-in) .dots{opacity:1;transform:none}
+}</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-desce" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-abre" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-whats" viewBox="0 0 24 24"><path d="M3.5 20.5 5 16.3A8.5 8.5 0 1 1 8 19.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 9.2c.2 1.9 2 4 4 4.7l1.2-1.1 1.8.8c-.2 1.1-1 1.7-2.1 1.6-3.3-.4-6-3.2-6.2-6.4 0-1 .7-1.8 1.6-2l.9 1.7Z" fill="currentColor"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-fone" viewBox="0 0 24 24"><path d="M6.6 3.5h3l1.5 4-2 1.3a10.6 10.6 0 0 0 6.1 6.1l1.3-2 4 1.5v3a2 2 0 0 1-2.1 2A17 17 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-raio" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-gente" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.7c1.9.8 3.1 2.6 3.5 5.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-tempo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 2.5v3M14.5 2.5v3M9.5 18.5v3M14.5 18.5v3M2.5 9.5h3M2.5 14.5h3M18.5 9.5h3M18.5 14.5h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap top__in">
+    <a class="logo" href="#topo" aria-label="X Wolves, início"><img src="/assets/brand/icone-96.webp" width="82" height="96" alt=""><span><em>X</em> WOLVES</span></a>
+    <nav class="nav" aria-label="Principal">
+      <div class="nav__item" data-menu>
+        <button class="nav__btn" type="button" aria-expanded="false" aria-controls="m-sol">Soluções <svg aria-hidden="true"><use href="#i-abre"/></svg></button>
+        <div class="mega" id="m-sol">
+          <div class="mega__list"><a href="#sol-protheus"><small>01</small><span>Protheus</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a><a href="#sol-rm"><small>02</small><span>RM</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a><a href="#sol-datasul"><small>03</small><span>Datasul</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a><a href="#sol-fluig"><small>04</small><span>Fluig</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a><a href="#sol-salesforce"><small>05</small><span>Salesforce</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a><a href="#sol-ams"><small>06</small><span>AMS Suporte</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a><a href="#sol-outsourcing"><small>07</small><span>Outsourcing</span><svg aria-hidden="true"><use href="#i-seta"/></svg></a></div>
+          <a class="mega__card" href="#contato"><img src="/assets/img/lobo/busto-mini.webp" width="240" height="240" alt="" loading="lazy" decoding="async"><b>O próximo nível do seu TOTVS começa numa conversa.</b><span class="go">Fale com um especialista <svg aria-hidden="true"><use href="#i-seta"/></svg></span></a>
+        </div>
+      </div>
+      <a href="#jornada">Jornada</a>
+      <a href="#ia">IA X Wolves</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <a class="btn top__cta" href="#contato">Fale com a gente <i><svg aria-hidden="true"><use href="#i-seta"/></svg></i></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menu"></button>
+  </div>
+  <div class="mnav" id="mnav" hidden>
+    <p>Soluções</p><a href="#sol-protheus">Protheus</a><a href="#sol-rm">RM</a><a href="#sol-datasul">Datasul</a><a href="#sol-fluig">Fluig</a><a href="#sol-salesforce">Salesforce</a><a href="#sol-ams">AMS Suporte</a><a href="#sol-outsourcing">Outsourcing</a>
+    <p>X Wolves</p><a href="#jornada">Jornada</a><a href="#ia">IA X Wolves</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a>
+    <a class="btn btn--blue" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." target="_blank" rel="noopener">Falar pelo WhatsApp <i><svg aria-hidden="true"><use href="#i-seta"/></svg></i></a>
+  </div>
+</header>
+
+<main id="conteudo">
+<section class="hero" id="topo" aria-labelledby="hero-t">
+  <div class="wrap">
+    <div class="hero__txt">
+      <h1 id="hero-t"><b>Seu TOTVS</b>com a força <em>da matilha.</em></h1>
+      <p class="lead">Consultoria completa em ERP, CRM e integrações. Especialistas que entram no seu negócio, entendem a operação e não param até o resultado.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--blue" href="#contato">Fale com um especialista <i><svg aria-hidden="true"><use href="#i-seta"/></svg></i></a>
+        <a class="btn btn--glass" href="#solucoes">Conheça as soluções</a>
+      </div>
+    </div>
+  </div>
+  <div class="wolf" id="wolf" aria-hidden="true"><img class="is-on" src="/assets/img/lobo/busto-c.webp" srcset="/assets/img/lobo/busto-c-620.webp 620w, /assets/img/lobo/busto-c.webp 1000w" data-f="c" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt="" fetchpriority="high"><img data-src="/assets/img/lobo/busto-e2.webp" data-srcset="/assets/img/lobo/busto-e2-620.webp 620w, /assets/img/lobo/busto-e2.webp 1000w" data-f="e2" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt="" decoding="async"><img data-src="/assets/img/lobo/busto-e1.webp" data-srcset="/assets/img/lobo/busto-e1-620.webp 620w, /assets/img/lobo/busto-e1.webp 1000w" data-f="e1" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt="" decoding="async"><img data-src="/assets/img/lobo/busto-d1.webp" data-srcset="/assets/img/lobo/busto-d1-620.webp 620w, /assets/img/lobo/busto-d1.webp 1000w" data-f="d1" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt="" decoding="async"><img data-src="/assets/img/lobo/busto-d2.webp" data-srcset="/assets/img/lobo/busto-d2-620.webp 620w, /assets/img/lobo/busto-d2.webp 1000w" data-f="d2" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt="" decoding="async"><img data-src="/assets/img/lobo/busto-piscada.webp" data-srcset="/assets/img/lobo/busto-piscada-620.webp 620w, /assets/img/lobo/busto-piscada.webp 1000w" data-f="p" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt="" decoding="async"></div>
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#circ" textLength="286" lengthAdjust="spacing">PARCEIRA TOTVS · X WOLVES · </textPath></text></svg>
+    <img src="/assets/brand/icone-96.webp" width="82" height="96" alt="">
+  </div>
+  <a class="manifest" href="#sobre"><img src="/assets/brand/icone-96.webp" width="82" height="96" alt=""><span><small>É MOMENTO DE MUDAR.</small><b>Para evoluir e não parar.</b></span><svg aria-hidden="true"><use href="#i-seta"/></svg></a>
+  <p class="hero__vert" aria-hidden="true">OLÁ, SOMOS A X WOLVES</p>
+  <span class="hero__line" aria-hidden="true"></span>
+  <a class="hero__down" href="#especialistas"><span><svg aria-hidden="true"><use href="#i-desce"/></svg></span>Explore o próximo nível</a>
+</section>
+
+<section class="wrap" id="especialistas" aria-label="Ecossistema TOTVS">
+  <div class="eco">
+    <p><b>Parceira TOTVS.</b>Especialista em todo o ecossistema.</p>
+    <div class="eco__run" data-loop><div class="eco__track"><span>Protheus</span><span>RM</span><span>Datasul</span><span>Fluig</span><span>Salesforce</span><span>AMS Suporte</span><span>Outsourcing</span><span>IA X Wolves</span><span aria-hidden="true">Protheus</span><span aria-hidden="true">RM</span><span aria-hidden="true">Datasul</span><span aria-hidden="true">Fluig</span><span aria-hidden="true">Salesforce</span><span aria-hidden="true">AMS Suporte</span><span aria-hidden="true">Outsourcing</span><span aria-hidden="true">IA X Wolves</span></div></div>
+  </div>
+</section>
+
+<section class="sec" id="numeros" aria-labelledby="num-t">
+  <div class="wrap">
+    <div class="intro">
+      <h2 class="h2" id="num-t"><b>Seu ERP.</b><span>No ritmo do seu negócio.</span></h2>
+      <p class="lead">Entregamos projetos com precisão para cada área da empresa, integrando clientes, fornecedores e recursos. Dominamos tecnologia e não aceitamos menos que excelência, da estratégia à execução.</p>
+    </div>
+    <div class="bento">
+      <article class="card card--dark">
+        <span class="card__ic"><svg aria-hidden="true"><use href="#i-seta"/></svg></span>
+        <div><small>Experiência que transforma</small><strong><span data-count="1800">1.800</span><sup>+</sup></strong><p>projetos entregues. Prontos para o próximo.</p></div>
+        <figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-06-600.webp" srcset="/assets/img/lobo/lobo-06-600.webp 380w, /assets/img/lobo/lobo-06.webp 633w" sizes="(max-width: 640px) 50vw, 330px" width="633" height="1000" alt="" loading="lazy" decoding="async"></figure>
+      </article>
+      <article class="card card--blue">
+        <span class="card__ic"><svg aria-hidden="true"><use href="#i-chip"/></svg></span>
+        <div><small>Tecnologia que conecta</small></div>
+        <div><strong><span data-count="250">250</span><sup>+</sup></strong><p>empresas com IA trabalhando a favor do negócio.</p>
+          <div class="chips"><span>Protheus</span><span>RM</span><span>Datasul</span><span>Fluig</span></div></div>
+      </article>
+      <article class="card card--white">
+        <span class="card__ic"><svg aria-hidden="true"><use href="#i-tempo"/></svg></span>
+        <small>Evolução constante</small>
+        <div><strong><span data-count="10">10</span><sup>+</sup></strong><p>anos de experiência em ERP, CRM e integrações.</p></div>
+      </article>
+      <article class="card card--white">
+        <span class="card__ic"><svg aria-hidden="true"><use href="#i-gente"/></svg></span>
+        <small>Gente que faz acontecer</small>
+        <div><strong><span data-count="75">75</span><sup>+</sup></strong><p>profissionais do mais alto nível.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec--grey" id="solucoes" aria-labelledby="sol-t">
+  <div class="rail" data-rail>
+    <div class="rail__pin">
+      <div class="wrap">
+        <div class="sol__head">
+          <div><h2 class="h2" id="sol-t"><b>Todo o ecossistema TOTVS.</b><span>Uma só matilha.</span></h2>
+            <p class="lead">Consultoria completa em ERP, CRM e integrações. Conectamos sistemas, processos e pessoas ao próximo desafio da sua empresa.</p></div>
+          <figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-01-600.webp" srcset="/assets/img/lobo/lobo-01-600.webp 400w, /assets/img/lobo/lobo-01.webp 667w" sizes="220px" width="667" height="1000" alt="" loading="lazy" decoding="async"></figure>
+        </div>
+      </div>
+      <div class="rail__track"><article class="sol" id="sol-protheus" style="--i:0"><span class="sol__n">01</span><p class="sol__name">Protheus</p><h3>Seu ERP no centro da operação.</h3><p>Especialistas para fazer do Protheus o coração da gestão, do backoffice ao chão de fábrica.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20Protheus." target="_blank" rel="noopener">Falar sobre Protheus <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article><article class="sol" id="sol-rm" style="--i:1"><span class="sol__n">02</span><p class="sol__name">RM</p><h3>Gestão que conecta.</h3><p>Consultoria completa em todos os módulos do TOTVS RM, com a empresa inteira falando a mesma língua.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20RM." target="_blank" rel="noopener">Falar sobre RM <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article><article class="sol" id="sol-datasul" style="--i:2"><span class="sol__n">03</span><p class="sol__name">Datasul</p><h3>Indústria em evolução.</h3><p>Atualização, revitalização e personalizações para o Datasul rodar em alto nível.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20Datasul." target="_blank" rel="noopener">Falar sobre Datasul <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article><article class="sol" id="sol-fluig" style="--i:3"><span class="sol__n">04</span><p class="sol__name">Fluig</p><h3>Processos mais fluidos.</h3><p>Integramos o Fluig aos ERPs TOTVS e simplificamos aprovações, cadastros e fluxos digitais.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20Fluig." target="_blank" rel="noopener">Falar sobre Fluig <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article><article class="sol" id="sol-salesforce" style="--i:4"><span class="sol__n">05</span><p class="sol__name">Salesforce</p><h3>O cliente no centro.</h3><p>CRM integrado ao seu ERP, para vendas e atendimento enxergarem o mesmo cliente.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20Salesforce." target="_blank" rel="noopener">Falar sobre Salesforce <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article><article class="sol" id="sol-ams" style="--i:5"><span class="sol__n">06</span><p class="sol__name">AMS Suporte</p><h3>Operação sem parar.</h3><p>Gestão de chamados e sustentação para manter os seus sistemas funcionando sem falhas.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20AMS%20Suporte." target="_blank" rel="noopener">Falar sobre AMS Suporte <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article><article class="sol" id="sol-outsourcing" style="--i:6"><span class="sol__n">07</span><p class="sol__name">Outsourcing</p><h3>Seu time, ampliado.</h3><p>Profissionais e times dedicados aos desafios dos seus produtos TOTVS.</p><a class="go" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20falar%20sobre%20Outsourcing." target="_blank" rel="noopener">Falar sobre Outsourcing <svg aria-hidden="true"><use href="#i-seta"/></svg></a></article></div>
+    </div>
+  </div>
+  <div class="sec" style="padding-top:0"></div>
+</section>
+
+<section class="sec" id="jornada" aria-labelledby="jor-t">
+  <div class="wrap jor">
+    <div class="jor__head">
+      <h2 class="h2" id="jor-t"><b>Evolução de verdade.</b><span>Em cada etapa.</span></h2>
+      <p class="lead">Uma parceria que acompanha toda a sua jornada digital, com profundidade para entender e precisão para transformar.</p>
+      <a class="btn btn--ink" href="#contato" style="margin-top:34px">Comece pela análise <i><svg aria-hidden="true"><use href="#i-seta"/></svg></i></a>
+    </div>
+    <div class="jor__list">
+      <article class="step" style="--i:0">
+        <div><span class="step__n">01</span>
+          <h3>Análise de oportunidades<span>Enxergar antes de acelerar.</span></h3>
+          <p>Investigamos processos, arquitetura e dados para encontrar os pontos críticos e as oportunidades certas de evolução. Com essa leitura, desenhamos a estratégia que acelera e sustenta o crescimento, inclusive com a IA do Protheus e a IA X Wolves.</p>
+          <ul><li>Arquitetura ERP em nuvem ou no seu servidor</li><li>Assessment de negócio</li><li>Infraestrutura, dados e processos</li></ul></div>
+        <figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-03-600.webp" srcset="/assets/img/lobo/lobo-03-600.webp 386w, /assets/img/lobo/lobo-03.webp 644w" sizes="(max-width: 600px) 50vw, 240px" width="644" height="1000" alt="" loading="lazy" decoding="async"></figure>
+      </article>
+      <article class="step" style="--i:1">
+        <div><span class="step__n">02</span>
+          <h3>Desenvolvimento<span>Tecnologia que acompanha você.</span></h3>
+          <p>Implantamos e revitalizamos ERPs modernos e robustos, alinhados à realidade e aos objetivos da empresa. Soluções que acompanham o seu crescimento e evitam problemas que deixam o negócio para trás.</p>
+          <ul><li>Implantações e revitalizações de ERP</li><li>Projetos tradicionais e ágeis</li><li>Especialistas e times alocados</li><li>Suporte técnico avançado (AMS)</li></ul></div>
+        <figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-05-600.webp" srcset="/assets/img/lobo/lobo-05-600.webp 383w, /assets/img/lobo/lobo-05.webp 639w" sizes="(max-width: 600px) 50vw, 240px" width="639" height="1000" alt="" loading="lazy" decoding="async"></figure>
+      </article>
+      <article class="step" style="--i:2">
+        <div><span class="step__n">03</span>
+          <h3>Otimização<span>Mais performance, sempre.</span></h3>
+          <p>Criamos soluções sob medida que transformam dados em vantagem competitiva, com IA que aprende com o seu negócio e apoia as decisões com clientes e fornecedores.</p>
+          <ul><li>Upgrades de versão do ERP</li><li>Otimização de processos</li><li>Integração entre sistemas</li><li>Customização e implementação de processos nativos</li></ul></div>
+        <figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-07-600.webp" srcset="/assets/img/lobo/lobo-07-600.webp 399w, /assets/img/lobo/lobo-07.webp 665w" sizes="(max-width: 600px) 50vw, 240px" width="665" height="1000" alt="" loading="lazy" decoding="async"></figure>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--grey" id="ia" aria-labelledby="ia-t">
+  <div class="wrap">
+    <div class="ia">
+      <div>
+        <h2 class="h2" id="ia-t"><b>IA X Wolves.</b><span>Seu ERP respondendo em segundos.</span></h2>
+        <p class="lead">Uma inteligência conectada ao seu TOTVS, que aprende com o seu negócio e ajuda nas decisões do dia a dia. Pergunte em português e receba a resposta com o próximo passo.</p>
+        <p class="ia__tag"><i></i>Em desenvolvimento. Quem fala com a gente agora conhece primeiro.</p>
+        <a class="btn btn--blue" href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Quero%20conhecer%20a%20IA%20X%20Wolves%20primeiro." target="_blank" rel="noopener">Quero conhecer primeiro <i><svg aria-hidden="true"><use href="#i-seta"/></svg></i></a>
+      </div>
+      <div>
+        <div class="chat" data-chat>
+          <div class="chat__top"><img src="/assets/img/lobo/busto-mini.webp" width="240" height="240" alt="" loading="lazy" decoding="async"><span><b>IA X Wolves</b><small>conectada ao seu Protheus</small></span></div>
+          <div class="msgs">
+            <p class="msg msg--eu" style="transition-delay:.1s">Quais clientes estão há mais de 60 dias sem comprar?</p>
+            <p class="msg msg--ia" style="transition-delay:.9s">Encontrei <b>18 clientes</b>. Os 5 maiores somam <b>R$ 412 mil</b> em compras nos últimos 12 meses. Quer que eu prepare uma ação de reativação?</p>
+            <p class="msg msg--eu" style="transition-delay:1.9s">Sim. E me mostra o estoque do que eles mais compram.</p>
+            <div class="msg msg--ia" style="transition-delay:2.9s">Aqui está:
+              <table><tr><td>Kit Industrial 40</td><td class="ok">1.240 un.</td></tr><tr><td>Válvula VX-12</td><td class="baixo">86 un. · repor</td></tr><tr><td>Sensor S3 Pro</td><td class="ok">512 un.</td></tr></table></div>
+            <span class="dots" style="transition-delay:3.6s"><i></i><i></i><i></i></span>
+          </div>
+        </div>
+        <p class="chat__note">Conversa ilustrativa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="sobre" aria-labelledby="sob-t">
+  <div class="wrap about">
+    <div class="about__img"><figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-00-600.webp" srcset="/assets/img/lobo/lobo-00-600.webp 380w, /assets/img/lobo/lobo-00.webp 633w" sizes="(max-width: 900px) 70vw, 400px" width="633" height="1000" alt="" loading="lazy" decoding="async"></figure><span><i><svg aria-hidden="true"><use href="#i-check"/></svg></i>Parceira TOTVS</span></div>
+    <div>
+      <h2 class="h2" id="sob-t"><b>Mais de 10 anos ajustando o ERP ao negócio.</b><span>Não o contrário.</span></h2>
+      <p class="lead">A X Wolves presta serviços em ERP, CRM e integrações, com especialidade em adequar negócios e processos, seja qual for o segmento. Nosso diferencial é o conhecimento técnico e científico na implantação, adequação e sustentação, com boas práticas de engenharia fiscal e contábil a serviço da operação.</p>
+      <ul class="pillars">
+        <li><b>ERP</b><span>Implantação, adequação e sustentação TOTVS.</span></li>
+        <li><b>CRM</b><span>Salesforce integrado ao seu ERP.</span></li>
+        <li><b>Integrações</b><span>Sistemas, dados e processos conversando.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="motto" aria-hidden="true" data-loop><figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-08-600.webp" srcset="/assets/img/lobo/lobo-08-600.webp 401w, /assets/img/lobo/lobo-08.webp 669w" sizes="190px" width="669" height="1000" alt="" loading="lazy" decoding="async"></figure><div class="motto__track"><span>É momento de mudar</span><span><b>para evoluir</b></span><span>e não parar</span><span>É momento de mudar</span><span><b>para evoluir</b></span><span>e não parar</span></div></div>
+</section>
+
+<section class="sec contact" id="contato" aria-labelledby="con-t">
+  <div class="wrap">
+    <div>
+      <h2 class="h2" id="con-t"><b>O próximo passo é seu.</b><span>Vamos levar o seu TOTVS mais longe.</span></h2>
+      <p class="lead">Conte o seu desafio. A gente conecta estratégia, tecnologia e pessoas para levar o resultado mais longe.</p>
+      <div class="contact__lst">
+        <a href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." target="_blank" rel="noopener"><i><svg aria-hidden="true"><use href="#i-whats"/></svg></i>+55 11 9.7611-7343</a>
+        <a href="mailto:contato@xwolves.com.br"><i><svg aria-hidden="true"><use href="#i-mail"/></svg></i>contato@xwolves.com.br</a>
+      </div>
+      <figure class="pose" aria-hidden="true"><img src="/assets/img/lobo/lobo-04-600.webp" srcset="/assets/img/lobo/lobo-04-600.webp 399w, /assets/img/lobo/lobo-04.webp 665w" sizes="260px" width="665" height="1000" alt="" loading="lazy" decoding="async"></figure>
+    </div>
+    <form class="form" id="form" novalidate>
+      <div class="form__row"><label>Nome<input name="nome" autocomplete="name" required></label><label>Empresa<input name="empresa" autocomplete="organization" required></label></div>
+      <div class="form__row"><label>E-mail corporativo<input name="email" type="email" autocomplete="email"></label><label>Celular com DDD<input name="celular" type="tel" autocomplete="tel" inputmode="tel"></label></div>
+      <label>Solução de interesse<select name="produto"><option>Protheus</option><option>RM</option><option>Datasul</option><option>Fluig</option><option>Salesforce</option><option>AMS Suporte</option><option>Outsourcing</option><option>IA X Wolves</option><option>Ainda não sei</option></select></label>
+      <label>Como podemos ajudar?<textarea name="msg" rows="3"></textarea></label>
+      <button class="btn btn--blue" type="submit">Enviar pelo WhatsApp <i><svg aria-hidden="true"><use href="#i-whats"/></svg></i></button>
+      <p class="form__msg" id="formMsg" role="status"></p>
+      <p class="form__alt">Prefere e-mail? Escreva para <a href="mailto:contato@xwolves.com.br">contato@xwolves.com.br</a>.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div><a class="logo" href="#topo" aria-label="X Wolves, início"><img src="/assets/brand/icone-96.webp" width="82" height="96" alt="" loading="lazy"><span><em>X</em> WOLVES</span></a><p>É momento de mudar, para evoluir e não parar.</p></div>
+      <nav aria-label="Soluções"><p class="foot__h">Soluções</p><ul><li><a href="#sol-protheus">Protheus</a></li><li><a href="#sol-rm">RM</a></li><li><a href="#sol-datasul">Datasul</a></li><li><a href="#sol-fluig">Fluig</a></li><li><a href="#sol-salesforce">Salesforce</a></li><li><a href="#sol-ams">AMS Suporte</a></li><li><a href="#sol-outsourcing">Outsourcing</a></li></ul></nav>
+      <nav aria-label="X Wolves"><p class="foot__h">X Wolves</p><ul><li><a href="#jornada">Jornada</a></li><li><a href="#ia">IA X Wolves</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#contato">Contato</a></li></ul></nav>
+      <div><p class="foot__h">Contato</p><ul><li><a href="https://wa.me/5511976117343?text=Ol%C3%A1%2C%20X%20Wolves%21%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20especialista." target="_blank" rel="noopener">+55 11 9.7611-7343</a></li><li><a href="mailto:contato@xwolves.com.br">contato@xwolves.com.br</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 X Wolves. Parceira TOTVS.</span><span>TOTVS, Protheus, RM, Datasul e Fluig são marcas da TOTVS S.A. Salesforce é marca da Salesforce, Inc.</span></div>
+  </div>
+</footer>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

@@ -51,15 +51,10 @@ def pose(n, sizes):
 
 
 def busto():
-    out = []
-    for f, nome in (('c', 'busto-c'), ('e2', 'busto-e2'), ('e1', 'busto-e1'), ('d1', 'busto-d1'), ('d2', 'busto-d2'), ('p', 'busto-piscada')):
-        ss = f'/assets/img/lobo/{nome}-620.webp 620w, /assets/img/lobo/{nome}.webp 1000w'
-        base = f'data-f="{f}" sizes="(max-width: 900px) 92vw, 58vw" width="1000" height="1000" alt=""'
-        if f == 'c':  # o de frente pinta junto com a página; os outros baixam depois do load
-            out.append(f'<img class="is-on" src="/assets/img/lobo/{nome}.webp" srcset="{ss}" {base} fetchpriority="high">')
-        else:
-            out.append(f'<img data-src="/assets/img/lobo/{nome}.webp" data-srcset="{ss}" {base} decoding="async">')
-    return ''.join(out)
+    """Imagem de frente (LCP) + os dados da sequência que o site.js toca no canvas (ver _src/giro.json)."""
+    g = json.loads((RAIZ / '_src/giro.json').read_text())
+    return (f'<img src="/assets/img/lobo/frente.webp" srcset="/assets/img/lobo/frente-620.webp 620w, /assets/img/lobo/frente.webp 1000w" '
+            f'sizes="(max-width: 900px) 84vw, 54vw" width="1000" height="1000" alt="" fetchpriority="high">'), g
 
 
 def main():
@@ -82,9 +77,10 @@ def main():
           'logo': URL + '/assets/brand/apple-touch-icon.png',
           'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Soluções TOTVS', 'itemListElement': [
               {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': nm, 'description': d}} for s, nm, t, d in SOLUCOES]}}
+    img_busto, giro = busto()
     html = (RAIZ / '_src/index.html').read_text(encoding='utf-8')
     troca = {'CSS': css, 'MEGA': mega, 'MNAV': mnav, 'SOLUCOES': sols, 'ECO': eco, 'ECO2': eco2, 'OPCOES': opcoes, 'FOOT_SOL': foot,
-             'BUSTO': busto(), 'WHATS': e(WHATS), 'WHATS_IA': e(WHATS_IA), 'URL': URL,
+             'BUSTO': img_busto, 'GIRO_PC': str(giro['pc']), 'GIRO_CEL': str(giro['cel']), 'WHATS': e(WHATS), 'WHATS_IA': e(WHATS_IA), 'URL': URL,
              'ROBOTS': 'index, follow, max-image-preview:large' if INDEXAR else 'noindex',
              'JSONLD': json.dumps(ld, ensure_ascii=False)}
     html = re.sub(r'\{\{POSE:(\d\d)\|([^}]*)\}\}', lambda m: pose(m.group(1), m.group(2)), html)

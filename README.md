@@ -13,7 +13,12 @@ python3 tools/serve.py 5330   # servidor local com gzip
 
 As imagens foram geradas no ChatGPT pelo Leonardo, com os prompts de `06_OUTPUTS/xwolves/prompts-lobo-3d.md` do Kit. Os originais estão em `~/Downloads/lobo/`.
 
-- **Topo:** busto com 5 quadros da cabeça (`busto-e2`, `e1`, `c`, `d1`, `d2`) e a piscada. No computador, o quadro muda conforme o mouse; no celular, ele olha em volta sozinho. Os quadros estão alinhados pelo terno, para o corpo não tremer. Só o quadro de frente baixa junto com a página; os outros baixam depois do `load`.
+- **Topo:** a cabeça segue o mouse sem degraus.
+  - Um vídeo de 5 s da cabeça virando, gerado no Higgsfield (FLUX 3 Video, 1080p, 40 créditos), virou 31 quadros escolhidos pelo ângulo do focinho, e não pelo tempo, porque o vídeo vira devagar e depois rápido.
+  - Os quadros foram alinhados pelo terno e o fundo verde saiu por recorte de cor. Ficam em `assets/img/lobo/giro/` (840 px) e em `giro-m/` (16 quadros de 480 px para o celular), e o `_src/giro.json` guarda a contagem.
+  - O `site.js` baixa os quadros depois do load, do meio para as pontas, e desenha no canvas o quadro que o mouse pede, com suavização. No celular, ele olha em volta sozinho.
+  - O quadro do meio (`frente.webp`) é a imagem que aparece antes, e é o LCP.
+  - O vídeo original está no Kit, em `06_OUTPUTS/xwolves/video-entrada/giro-cabeca-flux3.mp4`.
 - **Seções:** poses de corpo inteiro (`lobo-00` a `lobo-09`). Elas entram com um pulo, respiram e inclinam na direção do mouse.
 
 ## Conteúdo

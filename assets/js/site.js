@@ -38,53 +38,71 @@
   }, { rootMargin: '100px' }) : null;
   if (vis) $$('[data-loop], .seal, .pose, .hero__down').forEach(function (el) { vis.observe(el); });
 
-  /* ---------- o lobo do topo: a cabeça segue o mouse e ele pisca
-     5 quadros (e2 e1 c d1 d2) + piscada. Os outros quadros só baixam depois do load. */
+  /* ---------- o lobo do topo: a cabeça segue o mouse sem degraus
+     Um vídeo da cabeça virando (Higgsfield) foi cortado em quadros (data-frames). Eles baixam depois do load,
+     do meio para as pontas, e são desenhados num canvas: o mouse escolhe o quadro e a cabeça desliza até ele.
+     Até os quadros chegarem (ou sem JS), fica a imagem de frente, que é o LCP. No toque ele olha em volta sozinho.
+     A piscada dos 5 quadros antigos saiu: o rosto do vídeo não bate com ela. */
   var wolf = $('#wolf');
   if (wolf) {
-    var quadros = {}; $$('img', wolf).forEach(function (im) { quadros[im.dataset.f] = im; });
-    var ordem = ['e2', 'e1', 'c', 'd1', 'd2'], atual = 'c';
-    var mostra = function (f) {
-      if (f === atual || !quadros[f] || !quadros[f].complete || !quadros[f].naturalWidth) return;
-      quadros[atual].classList.remove('is-on'); quadros[f].classList.add('is-on'); atual = f;
+    var poster = $('img', wolf), cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+    var grande = fino && matchMedia('(min-width: 901px)').matches;
+    var N = +(grande ? wolf.dataset.frames : wolf.dataset.framesM), pasta = grande ? wolf.dataset.dir : wolf.dataset.dirM;
+    var quadros = new Array(N), meio = (N - 1) / 2, alvo = meio, pos = meio, desenhado = -1, vivo = false;
+    cv.className = 'wolf__cv'; cv.setAttribute('aria-hidden', 'true'); wolf.appendChild(cv);
+    var medeCv = function () {
+      var r = wolf.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1);
+      cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); desenhado = -1;
     };
-    var carrega = function () {
-      $$('img[data-src]', wolf).forEach(function (im) { im.srcset = im.dataset.srcset; im.src = im.dataset.src; im.removeAttribute('data-src'); });
+    var perto = function (i) { // quadro carregado mais perto do pedido
+      for (var k = 0; k < N; k++) { if (quadros[i + k]) return i + k; if (quadros[i - k]) return i - k; }
+      return -1;
     };
-    var pisca = function () {
-      var proximo = 2600 + Math.random() * 3400;
-      setTimeout(function () {
-        if (atual === 'c' && !document.hidden) { var antes = atual; mostra('p'); setTimeout(function () { if (atual === 'p') { quadros.p.classList.remove('is-on'); quadros[antes].classList.add('is-on'); atual = antes; } }, 150); }
-        pisca();
-      }, proximo);
+    var desenha = function () {
+      var i = perto(Math.round(pos)); if (i < 0) return;
+      if (i === desenhado) return;
+      ctx.clearRect(0, 0, cv.width, cv.height); ctx.drawImage(quadros[i], 0, 0, cv.width, cv.height); desenhado = i;
     };
-    var comecar = function () {
-      carrega();
-      if (reduce) return;
-      pisca();
-      if (fino) {
-        var pend = 0, ex = 0, ey = 0;
-        addEventListener('pointermove', function (e) {
-          ex = e.clientX; ey = e.clientY;
-          if (pend) return;
-          pend = requestAnimationFrame(function () {
-            pend = 0;
-            var r = wolf.getBoundingClientRect(); if (r.bottom < 0) return;
-            var cx = r.left + r.width / 2, dx = (ex - cx) / (innerWidth * 0.42);
-            var i = Math.max(0, Math.min(4, Math.round((dx + 1) / 2 * 4)));
-            mostra(ordem[i]);
-            wolf.style.setProperty('--px', (dx * 10).toFixed(1) + 'px');
-            wolf.style.setProperty('--py', (((ey / innerHeight) - .5) * 8).toFixed(1) + 'px');
+    var t0 = performance.now();
+    var tick = function (t) {
+      if (!fino) alvo = meio + Math.sin((t - t0) / 1900) * meio * 0.8;
+      pos += (alvo - pos) * (fino ? 0.16 : 0.08);
+      if (!wolf.classList.contains('is-off')) desenha();
+      requestAnimationFrame(tick);
+    };
+    var vira = function () { // quadros chegam do meio para as pontas: a cabeça já mexe antes de tudo baixar
+      var ordem = [Math.round(meio)];
+      for (var k = 1; k <= meio + 1; k++) { if (meio - k >= 0) ordem.push(Math.round(meio - k)); if (meio + k <= N - 1) ordem.push(Math.round(meio + k)); }
+      ordem = ordem.filter(function (v, i, a) { return a.indexOf(v) === i; });
+      var baixa = function (i) {
+        var im = new Image(); im.decoding = 'async'; im.src = pasta + String(i).padStart(2, '0') + '.webp';
+        return im.decode().then(function () { quadros[i] = im; }).catch(function () {});
+      };
+      var fila = ordem.slice(), ativos = 0;
+      var proximo = function () {
+        while (ativos < 6 && fila.length) {
+          ativos++; baixa(fila.shift()).then(function () {
+            ativos--;
+            if (!vivo && quadros[Math.round(meio)]) { vivo = true; medeCv(); desenha(); wolf.classList.add('is-live'); }
+            proximo();
           });
-        }, { passive: true });
-      } else {
-        // toque: ele olha em volta sozinho, devagar
-        var roteiro = ['c', 'e1', 'c', 'd1', 'c', 'e2', 'c', 'd2'], k = 0;
-        setInterval(function () { if (!wolf.classList.contains('is-off') && !document.hidden) mostra(roteiro[k = (k + 1) % roteiro.length]); }, 1700);
-        if (vis) vis.observe(wolf);
-      }
+        }
+      };
+      proximo();
     };
-    if (document.readyState === 'complete') comecar(); else addEventListener('load', comecar);
+    var comeca = function () {
+      if (reduce || !N) return;
+      vira(); addEventListener('resize', medeCv); requestAnimationFrame(tick);
+      if (fino) addEventListener('pointermove', function (e) {
+        var r = wolf.getBoundingClientRect(); if (r.bottom < 0) return;
+        var dx = (e.clientX - (r.left + r.width / 2)) / (innerWidth * 0.42);
+        alvo = meio + Math.max(-1, Math.min(1, dx)) * meio;
+        wolf.style.setProperty('--px', (dx * 10).toFixed(1) + 'px');
+        wolf.style.setProperty('--py', (((e.clientY / innerHeight) - .5) * 8).toFixed(1) + 'px');
+      }, { passive: true });
+      if (vis) vis.observe(wolf);
+    };
+    if (document.readyState === 'complete') comeca(); else addEventListener('load', comeca);
   }
 
   /* ---------- poses: pulo ao aparecer + inclinação na direção do mouse */

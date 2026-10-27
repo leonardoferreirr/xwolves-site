@@ -13,21 +13,24 @@ python3 tools/serve.py 5330   # servidor local com gzip
 
 As imagens foram geradas no ChatGPT pelo Leonardo, com os prompts de `06_OUTPUTS/xwolves/prompts-lobo-3d.md` do Kit. Os originais estão em `~/Downloads/lobo/`.
 
-- **Topo:** a cabeça olha para onde o mouse está, para os lados, para cima e para baixo.
-  - **Modelo 3D:** feito no Higgsfield com o Tripo H3.1 (18 créditos), a partir da imagem de frente. O GLB (65 MB) fica no Kit, em `06_OUTPUTS/xwolves/3d/lobo-tripo-h31.glb`, e não vai para o site.
-  - **Grade:** o `tools/lobo3d/grade.py` renderiza o modelo numa grade de olhares: 5 alturas (de -14° a +12°) × 17 giros (de -34° a +34°).
-    - O `render.html` torce só o pescoço e desenha sem luz, com a textura do jeito que veio.
-    - O script corrige o matiz para o azul-royal do lobo original, porque a textura puxa para o lilás.
-    - Cada quadro guarda só a parte de cima. O corpo, igual em todos, vira uma imagem à parte (`corpo.webp`).
-  - **Arquivos:** os quadros ficam em `assets/img/lobo/olhar/` (85 quadros, 2,7 MB, só no computador) e em `olhar-m/` (3 × 9 quadros, 425 KB, celular). O `_src/giro.json` guarda o tamanho da grade e a altura do corte.
+- **Topo:** o lobo é um modelo 3D desenhado ao vivo e olha para onde o mouse está, em qualquer direção.
+  - **Modelo 3D:** feito no Higgsfield com o Tripo H3.1 (18 créditos), a partir da imagem de frente.
+    - O original tem 65 MB e fica no Kit, em `06_OUTPUTS/xwolves/3d/lobo-tripo-h31.glb`.
+    - `tools/lobo3d/otimiza.mjs` reduz para 120 mil triângulos, com textura 2K em webp e compressão meshopt: `assets/lobo/lobo-1.glb`, 1,2 MB. Se o modelo mudar, troque o número do nome.
+  - **Módulo 3D:** `tools/lobo3d/src/vivo.js`, empacotado com three.js em `assets/js/lobo3d.js` (`npm run pacote`, 149 KB comprimido).
+    - Só o pescoço gira; o terno fica parado.
+    - Desenha sem luz, com a textura do jeito que veio, e puxa o matiz do lilás da textura para o azul-royal do lobo original.
+  - **Imagem de frente:** `tools/lobo3d/poster.py` gera `frente.webp` com o mesmo módulo. Por isso a troca da imagem pelo 3D não tem salto.
   - **No `site.js`:**
-    - Os quadros baixam depois do load, do olhar de frente para as pontas.
-    - O canvas mistura os 4 quadros vizinhos, e uma mola leva o olhar até o alvo.
-    - Parado, o olhar sempre assenta num quadro inteiro, então a imagem fica nítida, sem fantasma.
-    - No celular, ele olha em volta sozinho e olha para onde o dedo toca.
-  - **LCP:** o quadro de frente inteiro (`frente.webp`) é a imagem que aparece antes.
-  - **Por que não vídeo:** os vídeos (FLUX 3, Kling 3.0 e Kling Omni) viram a cabeça aos trancos e piscam bem no meio do giro, o que deixava o olho tremido. Os vídeos testados estão no Kit, em `06_OUTPUTS/xwolves/video-entrada/`.
-- **Seções:** poses de corpo inteiro (`lobo-00` a `lobo-09`). Elas entram com um pulo, respiram e inclinam na direção do mouse.
+    - **Computador:** depois do load, o módulo e o modelo só baixam em segundo plano. O 3D liga no primeiro movimento do mouse (em 0,2 s).
+    - **Celular:** liga sozinho uns 3,5 s depois do load, ou ao primeiro toque ou rolagem. Ele olha em volta sozinho e olha para onde o dedo toca.
+    - **Movimento:** a cada quadro de tela, uma mola leva a cabeça até o alvo, com arranque e freio de movimento real e sem misturar imagens. Medido: 60 quadros por segundo.
+    - **Sem WebGL ou com movimento reduzido:** fica a imagem de frente, que também é o LCP.
+  - **Por que não vídeo nem grade de imagens:**
+    - Os vídeos de IA (FLUX 3, Kling 3.0 e Kling Omni) viram a cabeça aos trancos e piscam no meio do giro. Os testes estão no Kit, em `06_OUTPUTS/xwolves/video-entrada/`.
+    - A grade de imagens misturava quadros no movimento, e o lobo parecia em câmera lenta, com dois rostos sobrepostos.
+- **Seções:** poses de corpo inteiro (`lobo-00` a `lobo-09`), paradas, só com um esmaecer ao aparecer.
+- **Selo da TOTVS (seção Sobre):** usa o símbolo da TOTVS do Simple Icons (`_src/totvs.svg`) com o texto "Parceira TOTVS". Se a TOTVS mandar o selo oficial de parceiro, ele substitui este.
 
 ## Conteúdo
 

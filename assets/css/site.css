@@ -55,6 +55,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .h2{font-weight:300;font-size:clamp(34px,4.6vw,68px);line-height:1.04;letter-spacing:-.035em;color:var(--ink)}
 .h2 b{font-weight:500;display:block}
 .h2 span{display:block;color:#6F7990}
+.h2--uma{font-weight:500;text-wrap:balance}  /* uma frase só, uma cor; as quebras (br.d) valem do tablet para cima */
+@media (max-width:640px){.h2--uma br.d{display:none}}
 .lead{font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--text);max-width:52ch}
 .sec{padding:var(--section) 0}
 .sec--grey{background:var(--grey)}
@@ -149,25 +151,19 @@ ul,ol{margin:0;padding:0;list-style:none}
 .wolf.is-live .wolf__cv{opacity:1}
 .wolf.is-live img{opacity:0}
 .wolf::before{content:"";position:absolute;left:18%;right:18%;bottom:-6%;height:46%;border-radius:50%;background:radial-gradient(closest-side,rgba(59,123,255,.55),transparent);z-index:-1}
-/* selo girando e cartão de vidro */
+/* selo girando */
 .seal{position:absolute;z-index:3;left:calc(50% + 10px);top:calc(var(--top-h) + 40px);width:118px;height:118px}
 .seal svg{width:100%;height:100%;animation:gira 22s linear infinite}
 .seal img{position:absolute;inset:32px;width:54px;height:auto;margin:auto}
 .seal text{font-size:11.2px;letter-spacing:.2em;fill:rgba(168,204,240,.8);font-weight:500}
 @keyframes gira{to{transform:rotate(360deg)}}
-.manifest{position:absolute;z-index:4;right:var(--gutter);bottom:96px;display:flex;align-items:center;gap:16px;width:min(360px,40vw);padding:18px 20px;border-radius:22px;background:rgba(6,20,51,.62);border:1px solid rgba(168,204,240,.22);color:#fff;transition:border-color .3s,background .3s}
-.manifest:hover{border-color:rgba(168,204,240,.5);background:rgba(10,31,77,.75)}
-.manifest img{width:44px;flex:none}
-.manifest small{display:block;font-size:12px;color:var(--sky);letter-spacing:.06em}
-.manifest b{display:block;font-weight:500;font-size:16px;line-height:1.3}
-.manifest svg{width:16px;height:16px;flex:none;margin-left:auto;color:var(--sky)}
 .hero__vert{position:absolute;z-index:3;right:20px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:11.5px;letter-spacing:.32em;color:rgba(168,204,240,.6)}
 .hero__down{position:absolute;z-index:4;left:var(--gutter);bottom:34px;display:flex;align-items:center;gap:12px;font-size:13.5px;color:rgba(255,255,255,.7)}
 .hero__down span{width:36px;height:36px;border-radius:50%;border:1px solid rgba(168,204,240,.35);display:grid;place-items:center}
 .hero__down svg{width:14px;height:14px;animation:desce 2.2s var(--ease) infinite}
 @keyframes desce{50%{transform:translateY(4px)}}
 .hero__line{position:absolute;left:var(--gutter);right:var(--gutter);bottom:86px;height:1px;background:linear-gradient(90deg,rgba(168,204,240,.25),rgba(168,204,240,0))}
-@media (max-width:1060px){.manifest,.hero__vert{display:none}}
+@media (max-width:1060px){.hero__vert{display:none}}
 /* celular: o lobo vem primeiro, e a base do terno se desfaz no fundo antes do título */
 @media (max-width:900px){
   .hero{display:flex;flex-direction:column;min-height:0;padding:calc(var(--top-h) + 4px) 0 64px}
@@ -282,22 +278,20 @@ ul,ol{margin:0;padding:0;list-style:none}
 @media (max-width:600px){.step{grid-template-columns:1fr;min-height:0}.step .pose{width:52%;justify-self:end;margin:-10px -10px -34px 0}}
 
 /* ---------------------------------------------------------------- IA X Wolves: bloco escuro com uma conversa */
-.ia{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,64px);align-items:center;padding:clamp(34px,5vw,72px);border-radius:36px;overflow:hidden;background:radial-gradient(60% 70% at 85% 30%,rgba(31,91,255,.45),transparent 70%),linear-gradient(160deg,var(--navy-2),var(--night));color:#fff}
+.ia{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,64px);align-items:center;padding:clamp(28px,3.6vw,54px) clamp(28px,4.4vw,64px);border-radius:36px;overflow:hidden;background:radial-gradient(60% 70% at 85% 30%,rgba(31,91,255,.45),transparent 70%),linear-gradient(160deg,var(--navy-2),var(--night));color:#fff}
 .ia::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(168,204,240,.05) 1px,transparent 1px) 0 0/7px 7px,linear-gradient(90deg,rgba(168,204,240,.05) 1px,transparent 1px) 0 0/7px 7px;-webkit-mask-image:radial-gradient(50% 60% at 80% 40%,#000,transparent);mask-image:radial-gradient(50% 60% at 80% 40%,#000,transparent)}
 .ia>*{position:relative;z-index:1}
-.ia .h2{color:#fff}
+.ia .h2{color:#fff;font-size:clamp(32px,3.5vw,52px)}
 .ia .h2 span{color:rgba(168,204,240,.75)}
 .ia .lead{margin-top:22px;color:rgba(255,255,255,.75)}
-.ia .btn{margin-top:34px}
-.ia__tag{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-size:13.5px;color:var(--sky)}
-.ia__tag i{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 10px #4ADE80}
-.chat{position:relative;padding:22px;border-radius:26px;background:rgba(255,255,255,.05);border:1px solid rgba(168,204,240,.2)}
+.ia .btn{margin-top:28px}
+.chat{position:relative;padding:18px 20px;border-radius:26px;background:rgba(255,255,255,.05);border:1px solid rgba(168,204,240,.2)}
 .chat__top{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(168,204,240,.14)}
 .chat__top img{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:top;background:var(--navy-2)}
 .chat__top b{font-weight:500;font-size:15px}
 .chat__top small{display:block;font-size:12px;color:var(--sky)}
-.msgs{display:grid;gap:12px;padding-top:18px}
-.msg{max-width:86%;padding:12px 16px;border-radius:18px;font-size:14.5px;line-height:1.5}
+.msgs{display:grid;gap:10px;padding-top:14px}
+.msg{max-width:86%;padding:10px 15px;border-radius:18px;font-size:14px;line-height:1.45}
 .msg--eu{justify-self:end;background:var(--blue);color:#fff;border-bottom-right-radius:6px}
 .msg--ia{background:rgba(255,255,255,.08);color:rgba(255,255,255,.92);border-bottom-left-radius:6px}
 .msg--ia b{color:#fff;font-weight:500}
@@ -314,14 +308,18 @@ ul,ol{margin:0;padding:0;list-style:none}
 .chat .is-late{display:none}
 .chat__note{margin-top:14px;font-size:12px;color:rgba(168,204,240,.6);text-align:right}
 @media (max-width:1000px){.ia{grid-template-columns:1fr}}
+/* tela baixa de notebook: o bloco da IA inteiro cabe na tela */
+@media (min-width:1001px) and (max-height:820px){.ia{padding-block:24px}.chat{padding:14px 18px}.chat__top{padding-bottom:12px}.msgs{gap:8px;padding-top:10px}.msg{font-size:13.5px;padding:8px 14px}.chat__note{margin-top:8px}}
 
 /* ---------------------------------------------------------------- sobre */
 .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,90px);align-items:center}
-.about__img{position:relative;border-radius:36px;background:radial-gradient(60% 55% at 50% 45%,rgba(31,91,255,.3),transparent 70%),var(--grey);aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
-.about__img .pose{width:78%}
-.about__img span{position:absolute;left:24px;top:24px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;background:#fff;font-size:14px;font-weight:500;color:var(--ink);box-shadow:0 14px 30px -18px rgba(2,10,31,.35)}
-.about__img span i{width:28px;height:28px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff}
-.about__img span svg{width:14px;height:14px}
+.about__img{position:relative;display:flex;justify-content:center}
+.about__img .pose{width:min(100%,420px)}
+/* selo de parceira: retângulo por cima do lobo, no meio */
+.selo{position:absolute;z-index:2;left:50%;top:56%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:14px 22px 14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 24px 50px -24px rgba(2,10,31,.55);white-space:nowrap}
+.selo svg{width:40px;height:40px;fill:var(--ink);flex:none}
+.selo small{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.selo b{display:block;font-weight:500;font-size:24px;letter-spacing:.06em;line-height:1.1;color:var(--ink)}
 .about .lead{margin-top:24px}
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px;border-top:1px solid var(--line)}
 .pillars li{padding:22px 20px 0 0}
@@ -342,7 +340,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .contact{position:relative;overflow:hidden;background:var(--night);color:#fff}
 .contact::before{content:"";position:absolute;inset:0;background:radial-gradient(45% 60% at 20% 80%,rgba(31,91,255,.4),transparent 70%)}
 .contact .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
-.contact .h2{color:#fff}
+.contact .h2{color:#fff;font-size:clamp(32px,3.4vw,50px)}
 .contact .h2 span{color:rgba(168,204,240,.75)}
 .contact .lead{margin-top:22px;color:rgba(255,255,255,.75)}
 .contact__lst{display:grid;gap:14px;margin-top:36px}
@@ -374,13 +372,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 .foot__bar{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid rgba(168,204,240,.12);font-size:13px}
 @media (max-width:900px){.foot__grid{grid-template-columns:1fr 1fr}.foot__grid>div:first-child{grid-column:1/-1}}
 
-/* ---------------------------------------------------------------- poses do lobo: entram com um pulo, respiram e inclinam para o mouse */
-.pose{position:relative;pointer-events:none;transform:perspective(900px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--ease)}
-.pose img{width:100%;height:auto;animation:respira 4.6s ease-in-out infinite alternate;transform-origin:50% 100%}
-@keyframes respira{to{transform:translateY(-6px) scaleY(1.012)}}
-.js .pose:not(.is-in) img{opacity:0;transform:translateY(40px) scale(.92)}
-.js .pose.is-in img{animation:pulo .9s var(--spring) both,respira 4.6s ease-in-out .9s infinite alternate}
-@keyframes pulo{from{opacity:0;transform:translateY(40px) scale(.92)}to{opacity:1;transform:none}}
+/* ---------------------------------------------------------------- poses do lobo: paradas, só aparecem com um esmaecer */
+.pose{position:relative;pointer-events:none}
+.pose img{width:100%;height:auto;transition:opacity .8s var(--ease)}
+.js .pose:not(.is-in) img{opacity:0}
 .is-off,.is-off *{animation-play-state:paused!important}
 
 @media (prefers-reduced-motion:reduce){

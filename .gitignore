@@ -2,3 +2,4 @@
 __pycache__/
 .vercel
 tools/lobo3d/folha.jpg
+tools/lobo3d/node_modules/

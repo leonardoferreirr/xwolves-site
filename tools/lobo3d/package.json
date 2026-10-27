@@ -1,0 +1,19 @@
+{
+  "name": "xwolves-lobo3d",
+  "private": true,
+  "type": "module",
+  "description": "Otimiza o GLB do lobo e empacota o lobo 3D ao vivo do site (assets/js/lobo3d.js)",
+  "scripts": {
+    "otimiza": "node otimiza.mjs",
+    "pacote": "esbuild src/vivo.js --bundle --minify --format=esm --target=es2020 --legal-comments=none --outfile=../../assets/js/lobo3d.js"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.1.1",
+    "@gltf-transform/extensions": "^4.1.1",
+    "@gltf-transform/functions": "^4.1.1",
+    "esbuild": "^0.24.0",
+    "meshoptimizer": "^0.22.0",
+    "sharp": "^0.33.5",
+    "three": "^0.169.0"
+  }
+}

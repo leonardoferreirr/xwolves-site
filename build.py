@@ -7,6 +7,7 @@ Monta o index.html a partir de _src/index.html, com o CSS embutido (uma folha ex
 O conteúdo que se repete (soluções, poses do lobo, quadros do busto) sai daqui. As poses estão em
 assets/img/lobo/lobo-NN.webp (1000 px de altura) e lobo-NN-600.webp.
 """
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -18,7 +19,7 @@ RAIZ = Path(__file__).parent
 URL = 'https://xwolves.com.br'
 INDEXAR = False  # o domínio ainda aponta para o site antigo; liga quando este for para o xwolves.com.br
 WHATS = 'https://wa.me/5511976117343?text=' + quote('Olá, X Wolves! Vim pelo site e quero falar com um especialista.')
-WHATS_IA = 'https://wa.me/5511976117343?text=' + quote('Olá, X Wolves! Quero conhecer a IA X Wolves primeiro.')
+WHATS_IA = 'https://wa.me/5511976117343?text=' + quote('Olá, X Wolves! Quero conhecer a IA X Wolves.')
 
 SOLUCOES = [  # (slug, nome, título, texto)
     ('protheus', 'Protheus', 'Seu ERP no centro da operação.', 'Especialistas para fazer do Protheus o coração da gestão, do backoffice ao chão de fábrica.'),
@@ -41,6 +42,8 @@ def whats(texto):
 
 
 SETA = '<svg aria-hidden="true"><use href="#i-seta"/></svg>'
+# símbolo da TOTVS (Simple Icons). Se a TOTVS mandar o selo oficial de parceiro, ele substitui este
+TOTVS_PATH = re.search(r' d="([^"]+)"', (RAIZ / '_src/totvs.svg').read_text()).group(1)
 
 
 def pose(n, sizes):
@@ -51,10 +54,14 @@ def pose(n, sizes):
 
 
 def busto():
-    """Imagem de frente (LCP) + o tamanho da grade de olhares que o site.js toca no canvas (ver _src/giro.json e tools/lobo3d)."""
-    g = json.loads((RAIZ / '_src/giro.json').read_text())
+    """Imagem de frente (LCP), gerada pelo mesmo módulo 3D que desenha o lobo ao vivo (tools/lobo3d/poster.py)."""
     return (f'<img src="/assets/img/lobo/frente.webp" srcset="/assets/img/lobo/frente-620.webp 620w, /assets/img/lobo/frente.webp 1000w" '
-            f'sizes="(max-width: 900px) 84vw, 54vw" width="1000" height="1000" alt="" fetchpriority="high">'), g
+            f'sizes="(max-width: 900px) 84vw, 54vw" width="1000" height="1000" alt="" fetchpriority="high">')
+
+
+def versao(caminho):
+    """/assets tem cache de 7 dias: o ?v= muda quando o arquivo muda."""
+    return f'/{caminho}?v=' + hashlib.sha1((RAIZ / caminho).read_bytes()).hexdigest()[:8]
 
 
 def main():
@@ -77,13 +84,12 @@ def main():
           'logo': URL + '/assets/brand/apple-touch-icon.png',
           'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Soluções TOTVS', 'itemListElement': [
               {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': nm, 'description': d}} for s, nm, t, d in SOLUCOES]}}
-    img_busto, giro = busto()
+    img_busto = busto()
     html = (RAIZ / '_src/index.html').read_text(encoding='utf-8')
     troca = {'CSS': css, 'MEGA': mega, 'MNAV': mnav, 'SOLUCOES': sols, 'ECO': eco, 'ECO2': eco2, 'OPCOES': opcoes, 'FOOT_SOL': foot,
-             'BUSTO': img_busto, 'OLHAR_LINHAS': str(giro['linhas']), 'OLHAR_COLS': str(giro['cols']), 'OLHAR_CORTE': str(giro['corte_pc']),
-             'OLHAR_LINHAS_CEL': str(giro['linhas_cel']), 'OLHAR_COLS_CEL': str(giro['cols_cel']), 'OLHAR_CORTE_CEL': str(giro['corte_cel']), 'WHATS': e(WHATS), 'WHATS_IA': e(WHATS_IA), 'URL': URL,
+             'BUSTO': img_busto, 'JS_LOBO': versao('assets/js/lobo3d.js'), 'JS_SITE': versao('assets/js/site.js'), 'WHATS': e(WHATS), 'WHATS_IA': e(WHATS_IA), 'URL': URL,
              'ROBOTS': 'index, follow, max-image-preview:large' if INDEXAR else 'noindex',
-             'JSONLD': json.dumps(ld, ensure_ascii=False)}
+             'JSONLD': json.dumps(ld, ensure_ascii=False), 'TOTVS_PATH': TOTVS_PATH}
     html = re.sub(r'\{\{POSE:(\d\d)\|([^}]*)\}\}', lambda m: pose(m.group(1), m.group(2)), html)
     html = re.sub(r'\{\{([A-Z0-9_]+)\}\}', lambda m: troca[m.group(1)], html)
     assert '{{' not in html, re.findall(r'\{\{[^}]*\}\}', html)

@@ -1,1 +1,35 @@
-{"pc": 31, "cel": 16, "meio_pc": 15, "origem": "Higgsfield flux_3_video job a65cecc3, quadros 58 a 109 por ângulo do focinho"}
+{
+ "linhas": 5,
+ "cols": 17,
+ "linhas_cel": 3,
+ "cols_cel": 9,
+ "corte_pc": 0.656,
+ "corte_cel": 0.6562,
+ "giro_graus": [
+  -34.0,
+  -29.75,
+  -25.5,
+  -21.25,
+  -17.0,
+  -12.75,
+  -8.5,
+  -4.25,
+  0.0,
+  4.25,
+  8.5,
+  12.75,
+  17.0,
+  21.25,
+  25.5,
+  29.75,
+  34.0
+ ],
+ "inclinacao_graus": [
+  -14,
+  -7,
+  0,
+  6,
+  12
+ ],
+ "origem": "modelo 3D Tripo H3.1 (Higgsfield) renderizado por tools/lobo3d/grade.py"
+}

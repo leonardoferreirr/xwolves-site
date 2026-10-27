@@ -13,12 +13,20 @@ python3 tools/serve.py 5330   # servidor local com gzip
 
 As imagens foram geradas no ChatGPT pelo Leonardo, com os prompts de `06_OUTPUTS/xwolves/prompts-lobo-3d.md` do Kit. Os originais estão em `~/Downloads/lobo/`.
 
-- **Topo:** a cabeça segue o mouse sem degraus.
-  - Um vídeo de 5 s da cabeça virando, gerado no Higgsfield (FLUX 3 Video, 1080p, 40 créditos), virou 31 quadros escolhidos pelo ângulo do focinho, e não pelo tempo, porque o vídeo vira devagar e depois rápido.
-  - Os quadros foram alinhados pelo terno e o fundo verde saiu por recorte de cor. Ficam em `assets/img/lobo/giro/` (840 px) e em `giro-m/` (16 quadros de 480 px para o celular), e o `_src/giro.json` guarda a contagem.
-  - O `site.js` baixa os quadros depois do load, do meio para as pontas, e desenha no canvas o quadro que o mouse pede, com suavização. No celular, ele olha em volta sozinho.
-  - O quadro do meio (`frente.webp`) é a imagem que aparece antes, e é o LCP.
-  - O vídeo original está no Kit, em `06_OUTPUTS/xwolves/video-entrada/giro-cabeca-flux3.mp4`.
+- **Topo:** a cabeça olha para onde o mouse está, para os lados, para cima e para baixo.
+  - **Modelo 3D:** feito no Higgsfield com o Tripo H3.1 (18 créditos), a partir da imagem de frente. O GLB (65 MB) fica no Kit, em `06_OUTPUTS/xwolves/3d/lobo-tripo-h31.glb`, e não vai para o site.
+  - **Grade:** o `tools/lobo3d/grade.py` renderiza o modelo numa grade de olhares: 5 alturas (de -14° a +12°) × 17 giros (de -34° a +34°).
+    - O `render.html` torce só o pescoço e desenha sem luz, com a textura do jeito que veio.
+    - O script corrige o matiz para o azul-royal do lobo original, porque a textura puxa para o lilás.
+    - Cada quadro guarda só a parte de cima. O corpo, igual em todos, vira uma imagem à parte (`corpo.webp`).
+  - **Arquivos:** os quadros ficam em `assets/img/lobo/olhar/` (85 quadros, 2,7 MB, só no computador) e em `olhar-m/` (3 × 9 quadros, 425 KB, celular). O `_src/giro.json` guarda o tamanho da grade e a altura do corte.
+  - **No `site.js`:**
+    - Os quadros baixam depois do load, do olhar de frente para as pontas.
+    - O canvas mistura os 4 quadros vizinhos, e uma mola leva o olhar até o alvo.
+    - Parado, o olhar sempre assenta num quadro inteiro, então a imagem fica nítida, sem fantasma.
+    - No celular, ele olha em volta sozinho e olha para onde o dedo toca.
+  - **LCP:** o quadro de frente inteiro (`frente.webp`) é a imagem que aparece antes.
+  - **Por que não vídeo:** os vídeos (FLUX 3, Kling 3.0 e Kling Omni) viram a cabeça aos trancos e piscam bem no meio do giro, o que deixava o olho tremido. Os vídeos testados estão no Kit, em `06_OUTPUTS/xwolves/video-entrada/`.
 - **Seções:** poses de corpo inteiro (`lobo-00` a `lobo-09`). Elas entram com um pulo, respiram e inclinam na direção do mouse.
 
 ## Conteúdo

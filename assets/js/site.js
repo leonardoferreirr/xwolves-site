@@ -38,67 +38,113 @@
   }, { rootMargin: '100px' }) : null;
   if (vis) $$('[data-loop], .seal, .pose, .hero__down').forEach(function (el) { vis.observe(el); });
 
-  /* ---------- o lobo do topo: a cabeça segue o mouse sem degraus
-     Um vídeo da cabeça virando (Higgsfield) foi cortado em quadros (data-frames). Eles baixam depois do load,
-     do meio para as pontas, e são desenhados num canvas: o mouse escolhe o quadro e a cabeça desliza até ele.
-     Até os quadros chegarem (ou sem JS), fica a imagem de frente, que é o LCP. No toque ele olha em volta sozinho.
-     A piscada dos 5 quadros antigos saiu: o rosto do vídeo não bate com ela. */
+  /* ---------- o lobo do topo: olha para onde o mouse está, para os lados, para cima e para baixo
+     Um modelo 3D do lobo (tools/lobo3d) foi renderizado numa grade de olhares: linha = altura do olhar, coluna = giro.
+     Só o pescoço gira, então cada quadro traz só a parte de cima e o corpo é uma imagem à parte, igual em todos.
+     O canvas mistura os quatro quadros vizinhos (nunca pula de um para o outro) e uma mola leva o olhar até o alvo,
+     com arranque e freio de movimento real. Os quadros baixam depois do load, do olhar de frente para as pontas.
+     Até chegarem (ou sem JS), fica a imagem de frente, que é o LCP. No toque ele olha em volta sozinho. */
   var wolf = $('#wolf');
   if (wolf) {
-    var poster = $('img', wolf), cv = document.createElement('canvas'), ctx = cv.getContext('2d');
-    var grande = fino && matchMedia('(min-width: 901px)').matches;
-    var N = +(grande ? wolf.dataset.frames : wolf.dataset.framesM), pasta = grande ? wolf.dataset.dir : wolf.dataset.dirM;
-    var quadros = new Array(N), meio = (N - 1) / 2, alvo = meio, pos = meio, desenhado = -1, vivo = false;
+    var cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+    var aux = document.createElement('canvas'), actx = aux.getContext('2d'); // a linha de baixo, antes de misturar
+    var grande = fino && matchMedia('(min-width: 901px)').matches, ds = wolf.dataset;
+    var C = +(grande ? ds.cols : ds.colsM), L = +(grande ? ds.rows : ds.rowsM), corte = +(grande ? ds.cut : ds.cutM);
+    var pasta = grande ? ds.dir : ds.dirM, corpo = new Image();
+    var q = [], cx0 = (C - 1) / 2, cy0 = (L - 1) / 2, vivo = false, ult = '', topo = 0;
+    for (var l = 0; l < L; l++) q.push(new Array(C));
+    var x = cx0, y = cy0, vx = 0, vy = 0, ax = cx0, ay = cy0; // posição (coluna, linha), velocidade e alvo
     cv.className = 'wolf__cv'; cv.setAttribute('aria-hidden', 'true'); wolf.appendChild(cv);
     var medeCv = function () {
       var r = wolf.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1);
-      cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); desenhado = -1;
+      cv.width = aux.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
+      topo = aux.height = Math.round(cv.height * corte); ult = '';
     };
-    var perto = function (i) { // quadro carregado mais perto do pedido
-      for (var k = 0; k < N; k++) { if (quadros[i + k]) return i + k; if (quadros[i - k]) return i - k; }
-      return -1;
+    var pega = function (l, c) { // quadro carregado mais perto na linha; se a linha ainda não chegou, a do meio
+      for (var k = 0; k < C; k++) { if (q[l][c + k]) return q[l][c + k]; if (q[l][c - k]) return q[l][c - k]; }
+      return l === Math.round(cy0) ? null : pega(Math.round(cy0), c);
+    };
+    var linhaEm = function (g, l) { // uma linha já misturando as duas colunas vizinhas
+      var c0 = Math.floor(x), f = x - c0, a = pega(l, c0), b = f > .003 ? pega(l, Math.min(C - 1, c0 + 1)) : null;
+      if (!a) return false;
+      g.globalAlpha = 1; g.drawImage(a, 0, 0, cv.width, topo);
+      if (b && b !== a) { g.globalAlpha = f; g.drawImage(b, 0, 0, cv.width, topo); g.globalAlpha = 1; }
+      return true;
     };
     var desenha = function () {
-      var i = perto(Math.round(pos)); if (i < 0) return;
-      if (i === desenhado) return;
-      ctx.clearRect(0, 0, cv.width, cv.height); ctx.drawImage(quadros[i], 0, 0, cv.width, cv.height); desenhado = i;
+      var k = x.toFixed(3) + ' ' + y.toFixed(3); if (k === ult) return;
+      var l0 = Math.min(L - 2, Math.floor(y)), fy = y - l0;
+      if (fy > .997) { l0++; fy = 0; }
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      if (!linhaEm(ctx, l0)) return;
+      if (fy > .003) { actx.clearRect(0, 0, aux.width, aux.height); if (linhaEm(actx, l0 + 1)) { ctx.globalAlpha = fy; ctx.drawImage(aux, 0, 0); ctx.globalAlpha = 1; } }
+      ctx.drawImage(corpo, 0, topo, cv.width, cv.height - topo);
+      ult = k;
     };
-    var t0 = performance.now();
+    var mola = function (p, v, alvo, w, dt) { return v + (w * w * (alvo - p) - 2 * w * v) * dt; }; // amortecimento crítico: chega sem passar do ponto
+    // o alvo é sempre um quadro inteiro: parado, a cabeça fica num quadro só, nítida; a mistura só aparece em movimento.
+    // A folga (.6) evita ficar trocando de quadro com o mouse parado na divisa.
+    var assenta = function (bruto, atual, max) { bruto = Math.max(0, Math.min(max, bruto)); return Math.abs(bruto - atual) > .6 ? Math.round(bruto) : atual; };
+    var olha = function (px, py) { // ponto da tela → coluna e linha alvo
+      var r = wolf.getBoundingClientRect();
+      var dx = (px - (r.left + r.width / 2)) / (innerWidth * .42), dy = (py - (r.top + r.height * .34)) / (innerHeight * .42); // .34: altura dos olhos
+      ax = assenta(cx0 + dx * cx0, ax, C - 1);
+      ay = assenta(cy0 + dy * cy0, ay, L - 1);
+      return dx;
+    };
+    var antes = 0, solto = 0;
     var tick = function (t) {
-      if (!fino) alvo = meio + Math.sin((t - t0) / 1900) * meio * 0.8;
-      pos += (alvo - pos) * (fino ? 0.16 : 0.08);
+      var dt = Math.min(.05, antes ? (t - antes) / 1000 : .016); antes = t;
+      if (!fino && t > solto) { // sozinho: um ponto novo a cada 1,6 a 3,4 s
+        ax = Math.round((.1 + Math.random() * .8) * (C - 1)); ay = Math.round(Math.random() * (L - 1));
+        solto = t + 1600 + Math.random() * 1800;
+      }
+      vx = mola(x, vx, ax, fino ? 9 : 7, dt); x = Math.max(0, Math.min(C - 1, x + vx * dt));
+      vy = mola(y, vy, ay, fino ? 9 : 7, dt); y = Math.max(0, Math.min(L - 1, y + vy * dt));
+      if (Math.abs(x - ax) < .004 && Math.abs(vx) < .01) { x = ax; vx = 0; } // chegou: encaixa no quadro
+      if (Math.abs(y - ay) < .004 && Math.abs(vy) < .01) { y = ay; vy = 0; }
       if (!wolf.classList.contains('is-off')) desenha();
       requestAnimationFrame(tick);
     };
-    var vira = function () { // quadros chegam do meio para as pontas: a cabeça já mexe antes de tudo baixar
-      var ordem = [Math.round(meio)];
-      for (var k = 1; k <= meio + 1; k++) { if (meio - k >= 0) ordem.push(Math.round(meio - k)); if (meio + k <= N - 1) ordem.push(Math.round(meio + k)); }
-      ordem = ordem.filter(function (v, i, a) { return a.indexOf(v) === i; });
-      var baixa = function (i) {
-        var im = new Image(); im.decoding = 'async'; im.src = pasta + String(i).padStart(2, '0') + '.webp';
-        return im.decode().then(function () { quadros[i] = im; }).catch(function () {});
+    var vira = function () { // do olhar de frente para as pontas: a cabeça já mexe antes de tudo baixar
+      var ordem = [];
+      for (var l2 = 0; l2 < L; l2++) for (var c2 = 0; c2 < C; c2++) ordem.push([l2, c2]);
+      ordem.sort(function (a, b) { return (Math.abs(a[0] - cy0) * 2 + Math.abs(a[1] - cx0)) - (Math.abs(b[0] - cy0) * 2 + Math.abs(b[1] - cx0)); });
+      var baixa = function (p) {
+        var im = new Image();
+        return chega(im, pasta + p[0] + '-' + String(p[1]).padStart(2, '0') + '.webp').then(function (ok) { if (ok) { q[p[0]][p[1]] = im; ult = ''; } });
       };
-      var fila = ordem.slice(), ativos = 0;
+      var ativos = 0;
       var proximo = function () {
-        while (ativos < 6 && fila.length) {
-          ativos++; baixa(fila.shift()).then(function () {
+        while (ativos < 6 && ordem.length) {
+          ativos++; baixa(ordem.shift()).then(function () {
             ativos--;
-            if (!vivo && quadros[Math.round(meio)]) { vivo = true; medeCv(); desenha(); wolf.classList.add('is-live'); }
+            if (!vivo && corpo.complete && corpo.naturalWidth && q[Math.round(cy0)][Math.round(cx0)]) { vivo = true; medeCv(); desenha(); wolf.classList.add('is-live'); }
             proximo();
           });
         }
       };
-      proximo();
+      chega(corpo, grande ? ds.body : ds.bodyM).then(proximo);
+    };
+    var chega = function (im, src) { // baixou → tenta decodificar antes de usar, mas não espera para sempre: em aba de fundo o decode() fica parado
+      return new Promise(function (ok) {
+        im.onload = function () { Promise.race([im.decode ? im.decode() : 0, new Promise(function (r) { setTimeout(r, 300); })]).catch(function () {}).then(function () { ok(true); }); };
+        im.onerror = function () { ok(false); };
+        im.src = src;
+      });
     };
     var comeca = function () {
-      if (reduce || !N) return;
+      if (reduce || !C) return;
       vira(); addEventListener('resize', medeCv); requestAnimationFrame(tick);
       if (fino) addEventListener('pointermove', function (e) {
-        var r = wolf.getBoundingClientRect(); if (r.bottom < 0) return;
-        var dx = (e.clientX - (r.left + r.width / 2)) / (innerWidth * 0.42);
-        alvo = meio + Math.max(-1, Math.min(1, dx)) * meio;
+        if (wolf.getBoundingClientRect().bottom < 0) return;
+        var dx = olha(e.clientX, e.clientY);
         wolf.style.setProperty('--px', (dx * 10).toFixed(1) + 'px');
         wolf.style.setProperty('--py', (((e.clientY / innerHeight) - .5) * 8).toFixed(1) + 'px');
+      }, { passive: true });
+      else addEventListener('pointerdown', function (e) { // no toque, ele olha para onde o dedo encostou
+        if (wolf.getBoundingClientRect().bottom < 0) return;
+        olha(e.clientX, e.clientY); solto = performance.now() + 2600;
       }, { passive: true });
       if (vis) vis.observe(wolf);
     };

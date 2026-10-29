@@ -122,6 +122,23 @@
     poses.forEach(function (p) { entra.observe(p); });
   } else poses.forEach(function (p) { p.classList.add('is-in'); });
 
+  /* ---------- vídeo de apresentação: capa e fundo só quando chega perto; toca com som no clique e pausa ao sair da tela */
+  var vid = $('[data-video]');
+  if (vid) {
+    var v = $('video', vid), play = $('.vid__play', vid);
+    var perto = function () { vid.classList.add('is-near'); if (!v.poster) v.poster = v.dataset.poster; };
+    if ('IntersectionObserver' in window) {
+      var chega = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { perto(); chega.disconnect(); } }, { rootMargin: '600px 0px' });
+      chega.observe(vid);
+      new IntersectionObserver(function (es) { if (!es[0].isIntersecting && !v.paused) v.pause(); }).observe(v);
+    } else perto();
+    play.addEventListener('click', function () {
+      perto(); v.controls = true; vid.classList.add('is-playing');
+      var p = v.play(); if (p && p.catch) p.catch(function () { vid.classList.remove('is-playing'); });
+    });
+    v.addEventListener('ended', function () { v.controls = false; vid.classList.remove('is-playing'); });
+  }
+
   /* ---------- soluções: no computador, a seção fica presa e a rolagem passa os cartões para o lado */
   var rail = $('[data-rail]');
   if (rail) {
